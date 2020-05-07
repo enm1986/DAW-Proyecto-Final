@@ -15,10 +15,9 @@ class CreatePortalesTable extends Migration
     {
         Schema::create('portales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_comunidad');
+            $table->foreignId('id_comunidad')->constrained('comunidades');
             $table->string('direccion', 100);
             $table->timestamps();
-            $table->foreign('id_comunidad')->references('id')->on('comunidades');
         });
     }
 

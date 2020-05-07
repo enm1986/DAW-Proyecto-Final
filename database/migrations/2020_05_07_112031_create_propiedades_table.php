@@ -15,12 +15,10 @@ class CreatePropiedadesTable extends Migration
     {
         Schema::create('propiedades', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_portal');
-            $table->foreignId('tipo_propiedad');
+            $table->foreignId('id_portal')->constrained('portales');
+            $table->foreignId('tipo_propiedad')->constrained('tipos_prop');
             $table->decimal('coeficiente', 5, 2);
             $table->timestamps();
-            $table->foreign('id_portal')->references('id')->on('portales');
-            $table->foreign('tipo_propiedad')->references('id')->on('tipos_prop');
         });
     }
 
