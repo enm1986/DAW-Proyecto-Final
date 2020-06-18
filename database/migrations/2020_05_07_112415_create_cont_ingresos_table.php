@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePropiedadesTable extends Migration
+class CreateContIngresosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreatePropiedadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('propiedades', function (Blueprint $table) {
+        Schema::create('cont_ingresos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_portal')->constrained('portales');
-            $table->foreignId('tipo_propiedad')->constrained('tipos_prop');
-            $table->decimal('coeficiente', 5, 2);
-            $table->string('descripcion');
+            $table->foreignId('id_comunidad')->constrained('comunidades');
+            $table->string('concepto');
+            $table->enum('tipo_ingreso',['fijo', 'variable']);
+            $table->float('importe', 8, 2);
+            $table->date('fecha_ingreso');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreatePropiedadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('propiedades');
+        Schema::dropIfExists('cont_ingresos');
     }
 }

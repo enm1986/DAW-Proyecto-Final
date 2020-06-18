@@ -15,8 +15,13 @@ class PropietarioSeeder extends Seeder {
         DB::table('propietarios')->insert([
             ['nombre' => 'UsuarioCom1', 'apellido1' => $faker->lastName, 'apellido2' => $faker->lastName, 'nif' => $faker->numerify('12345678A'), 'email' => 'usuario@com1.com', 'telefono' => $faker->randomNumber(9)],
             ['nombre' => 'AdminCom1', 'apellido1' => $faker->lastName, 'apellido2' => $faker->lastName, 'nif' => $faker->numerify('12345678A'), 'email' => 'admin@com1.com', 'telefono' => $faker->randomNumber(9)],
-            ['nombre' => $faker->firstName(), 'apellido1' => $faker->lastName, 'apellido2' => $faker->lastName, 'nif' => $faker->numerify('12345678A'), 'email' => $faker->unique()->safeEmail, 'telefono' => $faker->randomNumber(9)],
-            ['nombre' => $faker->firstName(), 'apellido1' => $faker->lastName, 'apellido2' => $faker->lastName, 'nif' => $faker->numerify('12345678A'), 'email' => $faker->unique()->safeEmail, 'telefono' => $faker->randomNumber(9)]
         ]);
+
+        for ($i = 0; $i < 50; $i++) {
+            DB::table('propietarios')->insert(
+                    ['nombre' => $faker->firstName(), 'apellido1' => $faker->lastName, 'apellido2' => $faker->lastName, 'nif' => $faker->numerify('12345678A'), 'email' => $faker->unique()->safeEmail, 'telefono' => $faker->randomNumber(9)]
+            );
+        }
     }
+
 }
