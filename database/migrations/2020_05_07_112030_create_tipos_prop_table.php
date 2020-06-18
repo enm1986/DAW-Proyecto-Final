@@ -15,7 +15,7 @@ class CreateTiposPropTable extends Migration
     {
         Schema::create('tipos_prop', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion', 100);
+            $table->string('tipo', 100);
             $table->timestamps();
         });
     }

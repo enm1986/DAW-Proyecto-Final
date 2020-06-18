@@ -13,13 +13,33 @@ class PropietarioSeeder extends Seeder {
      */
     public function run(Faker $faker) {
         DB::table('propietarios')->insert([
-            ['nombre' => 'UsuarioCom1', 'apellido1' => $faker->lastName, 'apellido2' => $faker->lastName, 'nif' => $faker->numerify('12345678A'), 'email' => 'usuario@com1.com', 'telefono' => $faker->randomNumber(9)],
-            ['nombre' => 'AdminCom1', 'apellido1' => $faker->lastName, 'apellido2' => $faker->lastName, 'nif' => $faker->numerify('12345678A'), 'email' => 'admin@com1.com', 'telefono' => $faker->randomNumber(9)],
+            ['id_user' => 1,
+                'nombre' => 'UsuarioCom1',
+                'apellido1' => $faker->lastName,
+                'apellido2' => $faker->lastName,
+                'nif' => $faker->randomNumber(8).$faker->randomLetter,
+                'email' => 'usuario@com1.com',
+                'telefono' => $faker->randomNumber(9),
+                'iban' => $faker->randomNumber()],
+            ['id_user' => 2,
+                'nombre' => 'AdminCom1',
+                'apellido1' => $faker->lastName,
+                'apellido2' => $faker->lastName,
+                'nif' => $faker->randomNumber(8).$faker->randomLetter,
+                'email' => 'admin@com1.com',
+                'telefono' => $faker->randomNumber(9),
+                'iban' => $faker->randomNumber()],
         ]);
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             DB::table('propietarios')->insert(
-                    ['nombre' => $faker->firstName(), 'apellido1' => $faker->lastName, 'apellido2' => $faker->lastName, 'nif' => $faker->numerify('12345678A'), 'email' => $faker->unique()->safeEmail, 'telefono' => $faker->randomNumber(9)]
+                    ['nombre' => $faker->firstName(),
+                        'apellido1' => $faker->lastName,
+                        'apellido2' => $faker->lastName,
+                        'nif' => $faker->randomNumber(8).$faker->randomLetter,
+                        'email' => $faker->unique()->safeEmail,
+                        'telefono' => $faker->randomNumber(9),
+                        'iban' => $faker->randomNumber()]
             );
         }
     }

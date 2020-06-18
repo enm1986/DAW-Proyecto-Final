@@ -15,7 +15,7 @@ class CreatePropietariosTable extends Migration
     {
         Schema::create('propietarios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->constrained('users');
+            $table->foreignId('id_user')->nullable()->constrained('users');
             $table->string('nombre');
             $table->string('apellido1');
             $table->string('apellido2');
