@@ -17,7 +17,7 @@ class CreateContIngresosTable extends Migration
             $table->id();
             $table->foreignId('id_comunidad')->constrained('comunidades');
             $table->string('concepto');
-            $table->enum('tipo_ingreso',['fijo', 'variable']);
+            $table->string('tipo_ingreso');
             $table->float('importe', 8, 2);
             $table->date('fecha_ingreso');
             $table->timestamps();
