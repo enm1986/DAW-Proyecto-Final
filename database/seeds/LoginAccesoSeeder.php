@@ -13,10 +13,10 @@ class LoginAccesoSeeder extends Seeder {
         DB::table('login_acceso')->insert([
             ['id_comunidad' => 1,
                 'id_user' => 1,
-                'tipo_acceso' => 'admin'],
+                'tipo_acceso' => 'basic'],
             ['id_comunidad' => 1,
                 'id_user' => 2,
-                'tipo_acceso' => 'basic'],
+                'tipo_acceso' => 'admin'],
             ['id_comunidad' => 3,
                 'id_user' => 2,
                 'tipo_acceso' => 'basic']
