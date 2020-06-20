@@ -18,7 +18,7 @@ class CreateProveedoresTable extends Migration
             $table->string('nombre');
             $table->string('cif', 9)->unique();
             $table->string('email')->unique();
-            $table->string('tlf');
+            $table->string('tlf',15);
             $table->string('iban', 24)->unique();
             $table->text('descripcion');
             $table->timestamps();

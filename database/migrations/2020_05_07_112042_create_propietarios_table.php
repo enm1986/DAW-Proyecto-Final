@@ -20,7 +20,7 @@ class CreatePropietariosTable extends Migration
             $table->string('apellido1');
             $table->string('apellido2');
             $table->string('nif', 9)->unique();
-            $table->string('telefono', 9);
+            $table->string('telefono', 15);
             $table->string('email');
             $table->string('iban', 24)->unique();
             $table->timestamps();
