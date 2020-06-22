@@ -53,11 +53,10 @@ use AuthenticatesUsers;
                 ->get();
 
         foreach ($lista as $acceso) {
-            $request->session()->put('c' . $acceso->id_comunidad, $acceso->tipo_acceso);
+            $request->session()->put('c'.$acceso->id_comunidad, $acceso->tipo_acceso);
         }
 
         //return $request->session()->all();
-        //return redirect('home')->withCookie('api_token', $user->api_token);
         return redirect('home')->withCookie('api_token', $user->api_token, null, null, null, null, false);
     }
 

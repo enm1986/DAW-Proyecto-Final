@@ -1957,11 +1957,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      comunidades: null,
-      api_token: $cookies.get("api_token")
+      api_token: $cookies.get("api_token"),
+      comunidades: null
     };
   },
   mounted: function mounted() {
@@ -1973,9 +1974,8 @@ __webpack_require__.r(__webpack_exports__);
     leerComunidades: function leerComunidades() {
       var _this = this;
 
-      //let api_token = $cookies.get("api_token");
       var bearer = 'Bearer ' + this.api_token;
-      fetch("http://127.0.0.1:8000/api/comunidades", {
+      fetch("/api/comunidades", {
         method: 'GET',
         headers: {
           'Authorization': bearer
@@ -37831,7 +37831,15 @@ var render = function() {
               _vm._v(
                 "\n                    Acceso: " +
                   _vm._s(comunidad.tipo_acceso) +
-                  "\n                "
+                  "\n                    "
+              ),
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: { href: "/comunidad/" + comunidad.id }
+                },
+                [_vm._v("Entrar")]
               )
             ])
           ])
