@@ -7,6 +7,7 @@
 
                     <div class="card-body">
                         Acceso: {{ comunidad.tipo_acceso }}
+                        <a class="nav-link" v-bind:href="'/comunidad/'+ comunidad.id">Entrar</a>
                     </div>
                 </div>
             </div>
@@ -30,7 +31,7 @@
             //obtener comunidades
             leerComunidades: function () {
                 let bearer = 'Bearer ' + this.api_token;
-                fetch("http://127.0.0.1:8000/api/comunidades", {
+                fetch("/api/comunidades", {
                     method: 'GET',
                     headers: {
                         'Authorization': bearer
