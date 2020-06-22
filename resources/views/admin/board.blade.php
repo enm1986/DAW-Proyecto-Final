@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    Usuario básico
+                    Usuario Administrador
+                    <p>Comunidad {{$comunidad}}</p>
                 </div>
             </div>
         </div>

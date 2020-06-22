@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('comunidades', 'API\ComunidadController@index');
+    Route::get('comunidades/{id}', 'API\ComunidadController@show');
 });

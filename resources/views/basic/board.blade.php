@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    Usuario Administrador
+                    Usuario básico
+                    <perfil-basic :com_id="'{{$comunidad}}'"></perfil-basic>
                 </div>
             </div>
         </div>
