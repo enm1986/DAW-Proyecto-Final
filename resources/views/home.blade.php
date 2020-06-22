@@ -15,6 +15,10 @@
                     @endif
 
                     You are logged in!
+                    <p>{{ Session::get('c1') }}</p>
+                    <p>{{ Session::get('c3') }}</p>
+                    
+                    <lista-comunidades></lista-comunidades>
                 </div>
             </div>
         </div>
