@@ -14,8 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!                    
-                    <lista-comunidades></lista-comunidades>
+                    Usuario básico
                 </div>
             </div>
         </div>
