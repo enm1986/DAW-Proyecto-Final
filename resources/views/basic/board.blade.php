@@ -15,7 +15,7 @@
                     @endif
 
                     Usuario básico
-                    <perfil-basic :com_id="'{{$comunidad}}'"></perfil-basic>
+                    <listar-prop-user :com_id="'{{$comunidad}}'"></listar-prop-user>
                 </div>
             </div>
         </div>
