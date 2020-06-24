@@ -17,7 +17,7 @@ class LoginAccesoSeeder extends Seeder {
             ['id_comunidad' => 1,
                 'id_user' => 2,
                 'tipo_acceso' => 'admin'],
-            ['id_comunidad' => 3,
+            ['id_comunidad' => 2,
                 'id_user' => 2,
                 'tipo_acceso' => 'basic']
         ]);

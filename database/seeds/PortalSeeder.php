@@ -16,7 +16,6 @@ class PortalSeeder extends Seeder {
             ['id' => 2, 'id_comunidad' => 2, 'direccion' => 'Calle Comunidad 2A'],
             ['id' => 3, 'id_comunidad' => 2, 'direccion' => 'Calle Comunidad 2B'],
             ['id' => 4, 'id_comunidad' => 2, 'direccion' => 'Calle Comunidad 2C'],
-            ['id' => 5, 'id_comunidad' => 3, 'direccion' => 'Calle Comunidad 3']
         ]);
     }
 

@@ -14,8 +14,7 @@ class ComunidadSeeder extends Seeder
     {
         DB::table('comunidades')->insert([
             ['id'=>1,'nombre'=>'Comunidad 1', 'cif' => 'H11111111'],
-            ['id'=>2,'nombre'=>'Comunidad 2', 'cif' => 'H22222222'],
-            ['id'=>3,'nombre'=>'Comunidad 3', 'cif' => 'H33333333']
+            ['id'=>2,'nombre'=>'Comunidad 2', 'cif' => 'H22222222']
         ]);
     }
 }

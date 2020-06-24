@@ -15,7 +15,7 @@ class PropietarioSeeder extends Seeder {
     public function run() {
         $faker = Faker::create('es_ES');
         $tlf = '### ## ## ##';
-        $nif = '[0-9]{8}[A-Z]{1}';
+        $nif = '[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]{1}';
         DB::table('propietarios')->insert([
             ['id_user' => 1,
                 'nombre' => 'UsuarioCom1',
@@ -23,7 +23,7 @@ class PropietarioSeeder extends Seeder {
                 'apellido2' => $faker->lastName,
                 'nif' => $faker->regexify($nif),
                 'email' => 'usuario@com1.com',
-                'telefono' => $faker->numerify('### ## ## ##'),
+                'telefono' => $faker->numerify($tlf),
                 'iban' => $faker->iban('ES')],
             ['id_user' => 2,
                 'nombre' => 'AdminCom1',
