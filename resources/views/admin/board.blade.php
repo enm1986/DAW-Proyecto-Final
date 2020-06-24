@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">{{ $comunidad_nombre }} - Administrador</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,8 +14,7 @@
                         </div>
                     @endif
 
-                    Usuario Administrador
-                    <p>Comunidad {{$comunidad}}</p>
+                    <listar-prop-user :com_id="'{{$comunidad_id}}'"></listar-prop-user>
                 </div>
             </div>
         </div>

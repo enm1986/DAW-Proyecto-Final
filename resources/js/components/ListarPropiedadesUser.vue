@@ -2,16 +2,15 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <!--
-                <div class="card" v-for="comunidad in comunidades" v-bind:key="comunidad.id">
-                    <div class="card-header">Comunidad: {{ comunidad.nombre }}</div>
+                <div class="card" v-for="propiedad in propiedades" v-bind:key="propiedad.id">
+                    <div class="card-header"> {{ propiedad.direccion }}</div>
 
                     <div class="card-body">
-                        Acceso: {{ comunidad.tipo_acceso }}
-                        <a class="nav-link" v-bind:href="'/comunidad/'+ comunidad.id">Entrar</a>
+                        <p>{{ propiedad.tipo }}</p>
+                        <p>{{ propiedad.descripcion }}</p>
+                        <p>Coeficiente: {{ propiedad.coeficiente }}%</p>
                     </div>
                 </div>
-                -->
             </div>
         </div>
     </div>

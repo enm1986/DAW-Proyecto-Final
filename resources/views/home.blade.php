@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     
-                    <lista-comunidades></lista-comunidades>
+                    <listar-comunidades></listar-comunidades>
                 </div>
             </div>
         </div>

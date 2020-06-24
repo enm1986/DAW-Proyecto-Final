@@ -7,7 +7,14 @@
 
                     <div class="card-body">
                         Acceso: {{ comunidad.tipo_acceso }}
-                        <a class="nav-link" v-bind:href="'/comunidad/'+ comunidad.id">Entrar</a>
+                        <!--<a class="nav-link" v-bind:href="'/comunidad/'+ comunidad.id">Entrar</a>-->
+                        <form method='POST' action="/comunidad">
+                            <input type="hidden" name="_token" v-bind:value="csrfToken">
+                            <input type="hidden" name='nombre' v-bind:value="comunidad.nombre">
+                            <input type="hidden" name='cid' v-bind:value="comunidad.id">
+                            <input type="submit" value="Entrar">
+                        </form>
+                        
                     </div>
                 </div>
             </div>
@@ -19,11 +26,13 @@
     export default {
         data: function () {
             return{
+                csrfToken: null,
                 api_token: $cookies.get("api_token"),
                 comunidades: null
             };
         },
         mounted() {
+            this.csrfToken= document.querySelector('meta[name="csrf-token"]').content
             this.leerComunidades();
             console.log('Component mounted.')
         },

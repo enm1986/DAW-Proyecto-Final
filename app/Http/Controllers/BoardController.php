@@ -10,12 +10,15 @@ class BoardController extends Controller {
         $this->middleware('auth');
     }
 
-    public function index(Request $request, $id) {
+    public function index(Request $request) {
+        $acceso = $request->session()->get('c' . $request->input('cid'));
+        $parametros = ['comunidad_id' => $request->input('cid'),
+            'comunidad_nombre' => $request->input('nombre')];
 
-        if ($request->session()->get('c' . $id) == 'basic') {
-            return view('basic.board', ['comunidad' => $id]);
-        } elseif ($request->session()->get('c' . $id) == 'admin') {
-            return view('admin.board', ['comunidad' => $id]);
+        if ($acceso == 'basic') {
+            return view('basic.board', $parametros);
+        } elseif ($acceso == 'admin') {
+            return view('admin.board', $parametros);
         } else {
             return view('welcome');
         }
