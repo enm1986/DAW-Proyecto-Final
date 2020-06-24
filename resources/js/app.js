@@ -21,7 +21,7 @@ Vue.use(require('vue-cookies'));
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('lista-comunidades', require('./components/ListaComunidades.vue').default);
+Vue.component('listar-comunidades', require('./components/ListarComunidades.vue').default);
 Vue.component('listar-prop-user', require('./components/ListarPropiedadesUser.vue').default);
 
 /**
