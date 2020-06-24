@@ -3,10 +3,12 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card" v-for="comunidad in comunidades" v-bind:key="comunidad.id">
-                    <div class="card-header">Comunidad: {{ comunidad.nombre }}</div>
+                    <div class="card-header">
+                        {{ comunidad.nombre }}
+                        <span v-if="comunidad.tipo_acceso == 'admin'" class="badge badge-warning">Administrador</span>
+                    </div>
 
                     <div class="card-body">
-                        Acceso: {{ comunidad.tipo_acceso }}
                         <!--<a class="nav-link" v-bind:href="'/comunidad/'+ comunidad.id">Entrar</a>-->
                         <form method='POST' action="/comunidad">
                             <input type="hidden" name="_token" v-bind:value="csrfToken">

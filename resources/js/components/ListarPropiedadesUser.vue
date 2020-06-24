@@ -3,12 +3,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card" v-for="propiedad in propiedades" v-bind:key="propiedad.id">
-                    <div class="card-header"> {{ propiedad.direccion }}</div>
+                    <div class="card-header"> 
+                        <span>{{ propiedad.direccion }}</span>
+                        <span>{{ propiedad.descripcion }}</span>
+                    </div>
 
                     <div class="card-body">
-                        <p>{{ propiedad.tipo }}</p>
-                        <p>{{ propiedad.descripcion }}</p>
-                        <p>Coeficiente: {{ propiedad.coeficiente }}%</p>
+                        <span>{{ propiedad.tipo }}</span>
+                        <span>Coeficiente: {{ propiedad.coeficiente }}%</span>
                     </div>
                 </div>
             </div>
@@ -46,3 +48,9 @@
 
     }
 </script>
+<style scoped>
+    .card-header, .card-body{
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
