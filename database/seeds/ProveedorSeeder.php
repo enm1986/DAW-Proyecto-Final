@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Faker\Generator as Faker;
+
+class ProveedorSeeder extends Seeder {
+
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run(Faker $faker) {
+        $tlf = '### ## ## ##';
+        $cif = '[ABCDEFJ]{1}[0-9]{8}';
+        $proveedores = ['Prov-Administracion', 'Prov-Seguros', 'Prov-Limpieza',
+            'Prov-Reformas', 'Prov-Piscina', 'Prov-Agua', 'Prov-Electr', 'Prov-Mantenimiento'];
+        
+        foreach ($proveedores as $nombre) {
+            DB::table('proveedores')->insert([
+                ['nombre' => $nombre,
+                    'cif' => $faker->unique()->regexify($cif),
+                    'email' => $faker->unique()->safeEmail,
+                    'telefono' => $faker->numerify($tlf),
+                    'iban' => $faker->iban('ES'),
+                    'descripcion' => $faker->text(100)],
+            ]);
+        }
+    }
+
+}

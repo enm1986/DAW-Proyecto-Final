@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder {
             PropiedadSeeder::class,
             PropietarioSeeder::class,
             PropPropSeeder::class,
-            LoginAccesoSeeder::class
+            LoginAccesoSeeder::class,
+            ProveedorSeeder::class,
+            ProvComunSeeder::class
         ]);
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContGastosTable extends Migration
+class CreateContCobrosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateContGastosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cont_gastos', function (Blueprint $table) {
+        Schema::create('cont_cobros', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_comunidad')->constrained('comunidades');
             $table->string('concepto');
-            $table->enum('tipo_gasto',['fijo', 'variable']);
+            $table->string('tipo_ingreso');
             $table->float('importe', 8, 2);
-            $table->date('fecha_factura');
-            $table->foreignId('id_proveedor')->constrained('proveedores');
+            $table->date('fecha_ingreso');
+            $table->boolean('cobrado');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateContGastosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cont_gastos');
+        Schema::dropIfExists('cont_ingresos');
     }
 }
