@@ -11,6 +11,10 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/var/www/proyecto/resources/views/welcome.blade.php</file>
+            <file>file:/var/www/proyecto/database/seeds/ContPagosSeeder.php</file>
+            <file>file:/var/www/proyecto/database/migrations/2020_05_07_112323_create_cont_pagos_table.php</file>
+        </group>
     </open-files>
 </project-private>

@@ -70,10 +70,10 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Acceder</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Registro</a>
                         @endif
                     @endauth
                 </div>
@@ -81,14 +81,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Administrador de Comunidades
                 </div>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="/adminer.php">Adminer</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://es.vuejs.org/">Vue.js</a>
+                    <a href="https://github.com/enm1986/DAW-Proyecto-Final">GitHub</a>
                 </div>
             </div>
         </div>
