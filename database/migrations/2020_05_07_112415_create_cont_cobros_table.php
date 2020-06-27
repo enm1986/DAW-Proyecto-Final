@@ -4,23 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContCobrosTable extends Migration
-{
+class CreateContCobrosTable extends Migration {
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('cont_cobros', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_comunidad')->constrained('comunidades');
+            $table->foreignId('id_propietario')->nullable()->constrained('propietarios');
             $table->string('concepto');
-            $table->string('tipo_ingreso');
+            $table->enum('tipo_cobro', ['cuota', 'ingreso', 'alquiler']);
             $table->float('importe', 8, 2);
-            $table->date('fecha_ingreso');
-            $table->boolean('cobrado');
+            $table->date('fecha_factura');
+            $table->date('fecha_cobro');
             $table->timestamps();
         });
     }
@@ -30,8 +30,8 @@ class CreateContCobrosTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('cont_ingresos');
     }
+
 }

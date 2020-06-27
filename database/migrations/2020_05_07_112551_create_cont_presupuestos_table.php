@@ -4,20 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProvComunTable extends Migration
-{
+class CreateContPresupuestosTable extends Migration {
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('prov_comun', function (Blueprint $table) {
+    public function up() {
+        Schema::create('cont_presupuestos', function (Blueprint $table) {
             $table->foreignId('id_comunidad')->constrained('comunidades');
-            $table->foreignId('id_proveedor')->constrained('proveedores');
+            $table->year('year');
+            $table->float('presupuesto', 8, 2);
             $table->timestamps();
-            $table->primary(['id_comunidad', 'id_proveedor']);
+            $table->primary(['id_comunidad', 'year']);
         });
     }
 
@@ -26,8 +26,8 @@ class CreateProvComunTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('comun_prov');
+    public function down() {
+        Schema::dropIfExists('cont_presupuestos');
     }
+
 }

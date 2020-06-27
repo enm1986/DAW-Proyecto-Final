@@ -16,16 +16,20 @@ class ProveedorSeeder extends Seeder {
         $cif = '[ABCDEFJ]{1}[0-9]{8}';
         $proveedores = ['Prov-Administracion', 'Prov-Seguros', 'Prov-Limpieza',
             'Prov-Reformas', 'Prov-Piscina', 'Prov-Agua', 'Prov-Electr', 'Prov-Mantenimiento'];
-        
+
         foreach ($proveedores as $nombre) {
-            DB::table('proveedores')->insert([
-                ['nombre' => $nombre,
-                    'cif' => $faker->unique()->regexify($cif),
-                    'email' => $faker->unique()->safeEmail,
-                    'telefono' => $faker->numerify($tlf),
-                    'iban' => $faker->iban('ES'),
-                    'descripcion' => $faker->text(100)],
-            ]);
+            $data = ['id_comunidad' => null,
+                'nombre' => $nombre,
+                'cif' => $faker->unique()->regexify($cif),
+                'email' => $faker->unique()->safeEmail,
+                'telefono' => $faker->numerify($tlf),
+                'iban' => $faker->iban('ES'),
+                'descripcion' => null];
+            for ($comunidad = 1; $comunidad <= 2; $comunidad++) {
+                $data['id_comunidad'] = $comunidad;
+                $data['descripcion'] = $faker->text(100);
+                DB::table('proveedores')->insert($data);
+            }
         }
     }
 

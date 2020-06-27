@@ -20,8 +20,14 @@ class DatabaseSeeder extends Seeder {
             PropPropSeeder::class,
             LoginAccesoSeeder::class,
             ProveedorSeeder::class,
-            ProvComunSeeder::class
+            ContPresupuestos::class,
+            ContPagosSeeder::class,
+            ContCobrosSeeder::class
         ]);
+    }
+    
+    public static function random_float($min, $max) {
+        return round(($min + lcg_value() * (abs($max - $min))), 2);
     }
 
 }

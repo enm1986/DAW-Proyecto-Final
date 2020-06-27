@@ -16,8 +16,7 @@ class TiposPropSeeder extends Seeder
             ['id'=>1,'tipo'=>'Vivienda'],
             ['id'=>2,'tipo'=>'Almacen'],
             ['id'=>3,'tipo'=>'Aparcamiento'],
-            ['id'=>4,'tipo'=>'Zona comun'],
-            ['id'=>5,'tipo'=>'Local']
+            ['id'=>4,'tipo'=>'Local']
         ]);
     }
 }
