@@ -16,7 +16,7 @@
                             <input type="hidden" name='cid' v-bind:value="comunidad.id">
                             <input type="submit" value="Entrar">
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
@@ -34,22 +34,20 @@
             };
         },
         mounted() {
-            this.csrfToken= document.querySelector('meta[name="csrf-token"]').content
-            this.leerComunidades();
+            this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
+            this.getComunidades();
             console.log('Component mounted.')
         },
         methods: {
-            //obtener comunidades
-            leerComunidades: function () {
+            //obtener comunidades            
+            getComunidades: function () {
                 let bearer = 'Bearer ' + this.api_token;
-                fetch("/api/comunidades", {
-                    method: 'GET',
+                axios.get('/api/comunidades', {
                     headers: {
                         'Authorization': bearer
                     }
                 })
-                        .then(response => response.json())
-                        .then(json => (this.comunidades = json));
+                        .then(response => (this.comunidades = response.data));
             }
         }
 

@@ -28,20 +28,18 @@
             };
         },
         mounted() {
-            this.listarPropiedades();
+            this.getPropiedades();
             console.log('Component mounted.');
         },
         methods: {
-            listarPropiedades: function () {
+            getPropiedades: function () {
                 let bearer = 'Bearer ' + this.api_token;
-                fetch("/api/comunidades/" + this.com_id, {
-                    method: 'GET',
+                axios.get('/api/comunidades/' + this.com_id, {
                     headers: {
                         'Authorization': bearer
                     }
                 })
-                        .then(response => response.json())
-                        .then(json => (this.propiedades = json));
+                        .then(response => (this.propiedades = response.data));
             }
 
         }
