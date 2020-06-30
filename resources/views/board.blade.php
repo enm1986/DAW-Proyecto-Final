@@ -5,7 +5,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ $comunidad_nombre }} </div>
+                <div class="card-header d-flex flex-row justify-content-between">
+                    <div class="align-self-center">
+                        <h4 class="mb-0">{{ $comunidad_nombre }}</h4>
+                    </div>
+                    @if(session('c'.$comunidad_id) == 'admin')
+                    <div>
+                        <form method='POST' action="/comunidad/admin">
+                            @csrf
+                            <input type="hidden" name='cid' value="{{$comunidad_id}}">
+                            <input type="submit" value="Administrar">
+                        </form>
+                    </div>
+                    @endif
+                </div>
 
                 <div class="card-body" id="accordion">
                     <div class="card">
@@ -57,3 +70,4 @@
     </div>
 </div>
 @endsection
+

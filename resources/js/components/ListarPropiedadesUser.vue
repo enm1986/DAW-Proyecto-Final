@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card" v-for="propiedad in propiedades" v-bind:key="propiedad.id">
+                <div class="card mb-2" v-for="propiedad in propiedades" v-bind:key="propiedad.id">
                     <div class="card-header"> 
                         <span>{{ propiedad.direccion }}</span>
                         <span>{{ propiedad.descripcion }}</span>
@@ -34,7 +34,7 @@
         methods: {
             getPropiedades: function () {
                 let bearer = 'Bearer ' + this.api_token;
-                axios.get('/api/comunidades/' + this.com_id, {
+                axios.get('/api/propiedades/' + this.com_id, {
                     headers: {
                         'Authorization': bearer
                     }
