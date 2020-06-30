@@ -24,7 +24,9 @@ class ProveedorSeeder extends Seeder {
                 'email' => $faker->unique()->safeEmail,
                 'telefono' => $faker->numerify($tlf),
                 'iban' => $faker->iban('ES'),
-                'descripcion' => null];
+                'descripcion' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')];
             for ($comunidad = 1; $comunidad <= 2; $comunidad++) {
                 $data['id_comunidad'] = $comunidad;
                 $data['descripcion'] = $faker->text(100);

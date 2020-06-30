@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
+
 //use Faker\Generator as Faker;
 
 class PropietarioSeeder extends Seeder {
@@ -24,7 +25,9 @@ class PropietarioSeeder extends Seeder {
                 'nif' => $faker->regexify($nif),
                 'email' => 'usuario@com1.com',
                 'telefono' => $faker->numerify($tlf),
-                'iban' => $faker->iban('ES')],
+                'iban' => $faker->iban('ES'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')],
             ['id_user' => 2,
                 'nombre' => 'Admin',
                 'apellido1' => 'AdminCom1',
@@ -32,7 +35,9 @@ class PropietarioSeeder extends Seeder {
                 'nif' => $faker->regexify($nif),
                 'email' => 'admin@com1.com',
                 'telefono' => $faker->numerify($tlf),
-                'iban' => $faker->iban('ES')],
+                'iban' => $faker->iban('ES'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')],
         ]);
 
         for ($i = 0; $i < 60; $i++) {
@@ -43,7 +48,9 @@ class PropietarioSeeder extends Seeder {
                         'nif' => $faker->regexify($nif),
                         'email' => $faker->unique()->safeEmail,
                         'telefono' => $faker->numerify($tlf),
-                        'iban' => $faker->iban('ES')]
+                        'iban' => $faker->iban('ES'),
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s')]
             );
         }
     }

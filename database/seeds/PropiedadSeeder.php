@@ -39,9 +39,11 @@ class PropiedadSeeder extends Seeder {
                 foreach ($puertas as $puerta) {
                     DB::table('propiedades')->insert([
                         'id_portal' => $portal,
-                        'tipo_propiedad' => 1,
+                        'id_tipo' => 1,
                         'coeficiente' => $coef,
-                        'descripcion' => 'Planta ' . $planta . ' Puerta ' . $puerta
+                        'descripcion' => 'Planta ' . $planta . ' Puerta ' . $puerta,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s')
                     ]);
                 }
             }
@@ -60,9 +62,11 @@ class PropiedadSeeder extends Seeder {
             for ($almacen = 1; $almacen <= $almacenes; $almacen++) {
                 DB::table('propiedades')->insert([
                     'id_portal' => $portal,
-                    'tipo_propiedad' => 2,
+                    'id_tipo' => 2,
                     'coeficiente' => $coef,
-                    'descripcion' => 'Almacen ' . $almacen
+                    'descripcion' => 'Almacen ' . $almacen,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
             }
         }
@@ -80,9 +84,11 @@ class PropiedadSeeder extends Seeder {
             for ($plaza = 1; $plaza <= $plazas; $plaza++) {
                 DB::table('propiedades')->insert([
                     'id_portal' => $portal,
-                    'tipo_propiedad' => 3,
+                    'id_tipo' => 3,
                     'coeficiente' => $coef,
-                    'descripcion' => 'Plaza ' . $plaza
+                    'descripcion' => 'Plaza ' . $plaza,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
             }
         }
@@ -100,9 +106,11 @@ class PropiedadSeeder extends Seeder {
             foreach ($locales as $local) {
                 DB::table('propiedades')->insert([
                     'id_portal' => $portal,
-                    'tipo_propiedad' => 4,
+                    'id_tipo' => 4,
                     'coeficiente' => $coef,
-                    'descripcion' => 'Local ' . $local
+                    'descripcion' => 'Local ' . $local,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
             }
         }

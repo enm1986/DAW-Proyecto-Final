@@ -35,7 +35,9 @@ class ContCobrosSeeder extends Seeder {
                     'tipo_cobro' => 'cuota',
                     'importe' => $importe,
                     'fecha_factura' => $fecha1->setDate(2020, $i, 2),
-                    'fecha_cobro' => $fecha2->setDate(2020, $i, 3)
+                    'fecha_cobro' => $fecha2->setDate(2020, $i, 3),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
             }
         }
@@ -63,12 +65,12 @@ class ContCobrosSeeder extends Seeder {
      */
     private function get_propietarios_coef(int $comunidad) {
         $propietarios = DB::table('portales')
-                        ->join('propiedades', 'portales.id', '=', 'propiedades.id_portal')
-                        ->join('prop_prop', 'propiedades.id', '=', 'prop_prop.id_propiedad')
-                        ->select('prop_prop.id_propietario as id', DB::raw('SUM(coeficiente) as coef'))
-                        ->where('portales.id_comunidad', '=', $comunidad)
-                        ->groupBy('prop_prop.id_propietario')
-                        ->get();
+                ->join('propiedades', 'portales.id', '=', 'propiedades.id_portal')
+                ->join('prop_prop', 'propiedades.id', '=', 'prop_prop.id_propiedad')
+                ->select('prop_prop.id_propietario as id', DB::raw('SUM(coeficiente) as coef'))
+                ->where('portales.id_comunidad', '=', $comunidad)
+                ->groupBy('prop_prop.id_propietario')
+                ->get();
         return $propietarios;
     }
 

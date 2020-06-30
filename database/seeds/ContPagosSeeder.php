@@ -35,14 +35,18 @@ class ContPagosSeeder extends Seeder {
                 'tipo_pago' => 'fijo',
                 'importe' => 300,
                 'fecha_factura' => $fecha1->setDate(2020, 3, 9),
-                'fecha_pago' => $fecha2->setDate(2020, 3, 11)],
+                'fecha_pago' => $fecha2->setDate(2020, 3, 11),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')],
             ['id_comunidad' => 1,
                 'id_proveedor' => 4,
                 'concepto' => 'Reforma Fachada',
                 'tipo_pago' => 'variable',
                 'importe' => 2500,
                 'fecha_factura' => $fecha1->setDate(2020, 6, 28),
-                'fecha_pago' => null]
+                'fecha_pago' => null,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')]
         ]);
 
         $this->pagos_fijo(1, 7, 'Electricidad', 50, 70);
@@ -71,7 +75,9 @@ class ContPagosSeeder extends Seeder {
                 'tipo_pago' => 'fijo',
                 'importe' => DatabaseSeeder::random_float($importe_min, $importe_max),
                 'fecha_factura' => $fecha1->setDate(2020, $i, 15),
-                'fecha_pago' => $fecha2->setDate(2020, $i, 17)
+                'fecha_pago' => $fecha2->setDate(2020, $i, 17),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ]);
         }
     }

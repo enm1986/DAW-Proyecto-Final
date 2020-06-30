@@ -13,14 +13,18 @@ class UserSeeder extends Seeder {
      */
     public function run() {
         DB::table('users')->insert([
-            ['name'=>'usuario_com1',
+            ['name' => 'usuario_com1',
                 'email' => 'usuario@com1.com',
                 'password' => Hash::make('usuario'),
-                'api_token' => Str::random(60)],
-            ['name'=>'admin_com1',
+                'api_token' => Str::random(60),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')],
+            ['name' => 'admin_com1',
                 'email' => 'admin@com1.com',
                 'password' => Hash::make('admin'),
-                'api_token' => Str::random(60)]
+                'api_token' => Str::random(60),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')]
         ]);
     }
 

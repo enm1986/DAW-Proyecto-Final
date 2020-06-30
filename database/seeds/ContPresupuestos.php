@@ -14,7 +14,9 @@ class ContPresupuestos extends Seeder {
         DB::table('cont_presupuestos')->insert([
             'id_comunidad' => 1,
             'year' => date('Y'),
-            'presupuesto' => 5000
+            'presupuesto' => 5000,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ]);
     }
 

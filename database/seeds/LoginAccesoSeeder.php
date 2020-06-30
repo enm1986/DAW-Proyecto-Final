@@ -13,16 +13,24 @@ class LoginAccesoSeeder extends Seeder {
         DB::table('login_acceso')->insert([
             ['id_comunidad' => 1,
                 'id_user' => 1,
-                'tipo_acceso' => 'basic'],
+                'tipo_acceso' => 'basic',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')],
             ['id_comunidad' => 2,
                 'id_user' => 1,
-                'tipo_acceso' => 'basic'],
+                'tipo_acceso' => 'basic',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')],
             ['id_comunidad' => 1,
                 'id_user' => 2,
-                'tipo_acceso' => 'admin'],
+                'tipo_acceso' => 'admin',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')],
             ['id_comunidad' => 2,
                 'id_user' => 2,
-                'tipo_acceso' => 'basic']
+                'tipo_acceso' => 'basic',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')]
         ]);
     }
 
