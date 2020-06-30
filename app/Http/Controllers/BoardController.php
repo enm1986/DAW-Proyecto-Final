@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BoardController extends Controller {
 
@@ -10,15 +11,32 @@ class BoardController extends Controller {
         $this->middleware('auth');
     }
 
+    /**
+     * Redirecciona al usuario dependiendo del acceso que tenga sobre una comunidad
+     * @param Request $request
+     * @return view
+     */
     public function index(Request $request) {
-        $acceso = $request->session()->get('c' . $request->input('cid'));
         $parametros = ['comunidad_id' => $request->input('cid'),
             'comunidad_nombre' => $request->input('nombre')];
 
-        if ($acceso == 'basic') {
-            return view('basic.board', $parametros);
-        } elseif ($acceso == 'admin') {
-            return view('admin.board', $parametros);
+        if (Auth::user()->hasAccess($request)) {
+            return view('board', $parametros);
+        } else {
+            return view('welcome');
+        }
+    }
+    
+    /**
+     * Redirecciona al usuario dependiendo de si es Admin de la comunidad
+     * @param Request $request
+     * @return view
+     */
+    public function admin(Request $request) {
+        $parametros = ['comunidad_id' => $request->input('cid')];
+
+        if (Auth::user()->isAdminSession($request)) {
+            return view('admin.home', $parametros);
         } else {
             return view('welcome');
         }
