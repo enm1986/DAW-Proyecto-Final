@@ -15,7 +15,7 @@ class CreateProveedoresTable extends Migration
     {
         Schema::create('proveedores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_comunidad')->constrained('comunidades');
+            $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
             $table->string('nombre');
             $table->string('cif', 9);
             $table->string('email');

@@ -14,7 +14,7 @@ class CreateContCobrosTable extends Migration {
     public function up() {
         Schema::create('cont_cobros', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_comunidad')->constrained('comunidades');
+            $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
             $table->foreignId('id_propietario')->nullable()->constrained('propietarios');
             $table->string('concepto');
             $table->enum('tipo_cobro', ['cuota', 'ingreso', 'alquiler']);

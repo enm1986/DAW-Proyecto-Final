@@ -15,7 +15,7 @@ class CreateInstalacionesTable extends Migration
     {
         Schema::create('instalaciones', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_comunidad')->constrained('comunidades');
+            $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
             $table->string('nombre');
             $table->text('descripcion');
             $table->float('coste', 8, 2);

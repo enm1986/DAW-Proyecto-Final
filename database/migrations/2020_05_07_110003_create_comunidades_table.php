@@ -16,7 +16,7 @@ class CreateComunidadesTable extends Migration
         Schema::create('comunidades', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 100);
-            $table->string('cif', 9);
+            $table->string('cif', 9)->unique();
             $table->string('iban', 24)->nullable();
             $table->binary('image')->nullable();
             $table->timestamps();

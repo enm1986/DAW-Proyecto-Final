@@ -13,7 +13,7 @@ class CreateContPresupuestosTable extends Migration {
      */
     public function up() {
         Schema::create('cont_presupuestos', function (Blueprint $table) {
-            $table->foreignId('id_comunidad')->constrained('comunidades');
+            $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
             $table->year('year');
             $table->float('presupuesto', 8, 2);
             $table->timestamps();

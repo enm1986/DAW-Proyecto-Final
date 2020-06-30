@@ -14,8 +14,8 @@ class CreateLoginAccesoTable extends Migration
     public function up()
     {
         Schema::create('login_acceso', function (Blueprint $table) {
-            $table->foreignId('id_comunidad')->constrained('comunidades');
-            $table->foreignId('id_user')->constrained('users');
+            $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->enum('tipo_acceso',['admin', 'basic']);
             $table->timestamps();
             $table->primary(['id_comunidad', 'id_user']);

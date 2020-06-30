@@ -14,7 +14,7 @@ class CreateContPagosTable extends Migration {
     public function up() {
         Schema::create('cont_pagos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_comunidad')->constrained('comunidades');
+            $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
             $table->foreignId('id_proveedor')->nullable()->constrained('proveedores');
             $table->string('concepto');
             $table->enum('tipo_pago', ['fijo', 'variable']);
