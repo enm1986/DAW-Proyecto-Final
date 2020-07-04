@@ -11,52 +11,53 @@ class PropPropSeeder extends Seeder {
      */
     public function run() {
         //Propiedades Comunidad 1
-        $propiedades = [1, 9, 17];
-        foreach ($propiedades as $propiedad) {
-            for ($i = 0; $i < 8; $i++) {
+        $this->asignarProp(1, 8, 1);
+        DB::table('prop_prop')->insert([
+            ['id_propiedad' => 25,
+                'id_propietario' => 9,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')],
+            ['id_propiedad' => 26,
+                'id_propietario' => 10,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')]
+        ]);
+
+        //Propiedades Comunidad 2
+        $this->asignarProp(11, 20, 27);
+        DB::table('prop_prop')->insert([
+            ['id_propiedad' => 87,
+                'id_propietario' => 31,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')],
+            ['id_propiedad' => 88,
+                'id_propietario' => 32,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')],
+            ['id_propiedad' => 89,
+                'id_propietario' => 33,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')]
+        ]);
+    }
+
+    /**
+     * 
+     * @param int $propietario_ini    ID inicial de propietarios
+     * @param int $propietarios Nº de propietarios
+     * @param int $propiedades_ini   ID inicial de propiedades
+     * @param int $tipos_prop   Tipos de propiedades (normalmente 3: vivienda, parking, almacen)
+     */
+    private function asignarProp(int $propietario_ini, int $propietarios, int $propiedad_ini) {
+        for ($i = 0; $i < 3; $i++) {
+            for ($j = 0; $j < $propietarios; $j++) {
                 DB::table('prop_prop')->insert([
-                    'id_propiedad' => $propiedad + $i,
-                    'id_propietario' => $i + 1,
-                    'coef_propietario' => 100,
+                    'id_propiedad' => $propiedad_ini + $j + ($propietarios * $i),
+                    'id_propietario' => $propietario_ini + $j,
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
             }
-        }
-
-        for ($i = 25; $i <= 26; $i++) {
-            DB::table('prop_prop')->insert([
-                'id_propiedad' => $i,
-                'id_propietario' => rand(3, 60),
-                'coef_propietario' => 100,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ]);
-        }
-
-        //Propiedades Comunidad 2
-        DB::table('prop_prop')->insert([
-            'id_propiedad' => 27,
-            'id_propietario' => 1,
-            'coef_propietario' => 100,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);
-        DB::table('prop_prop')->insert([
-            'id_propiedad' => 215,
-            'id_propietario' => 2,
-            'coef_propietario' => 100,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);
-        for ($i = 28; $i <= 214; $i++) {
-            DB::table('prop_prop')->insert([
-                'id_propiedad' => $i,
-                'id_propietario' => rand(3, 60),
-                'coef_propietario' => 100,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ]);
         }
     }
 

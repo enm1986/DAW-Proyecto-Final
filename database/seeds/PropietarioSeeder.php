@@ -17,32 +17,58 @@ class PropietarioSeeder extends Seeder {
         $faker = Faker::create('es_ES');
         $tlf = '### ## ## ##';
         $nif = '[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]{1}';
-        DB::table('propietarios')->insert([
-            ['id_user' => 1,
-                'nombre' => 'Usuario',
-                'apellido1' => 'UsuarioCom1',
-                'apellido2' => 'UsuarioCom2',
-                'nif' => $faker->regexify($nif),
-                'email' => 'usuario@com1.com',
-                'telefono' => $faker->numerify($tlf),
-                'iban' => $faker->iban('ES'),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')],
-            ['id_user' => 2,
-                'nombre' => 'Admin',
-                'apellido1' => 'AdminCom1',
-                'apellido2' => 'UsuarioCom2',
-                'nif' => $faker->regexify($nif),
-                'email' => 'admin@com1.com',
-                'telefono' => $faker->numerify($tlf),
-                'iban' => $faker->iban('ES'),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')],
-        ]);
 
-        for ($i = 0; $i < 60; $i++) {
+        //Usuarios que estarán en las 2 comunidades
+        $usuario1 = ['id_user' => 1,
+            'id_comunidad' => null,
+            'nombre' => 'Usuario',
+            'apellido1' => 'UsuarioCom1',
+            'apellido2' => 'UsuarioCom2',
+            'nif' => $faker->regexify($nif),
+            'email' => 'usuario@com1.com',
+            'telefono' => $faker->numerify($tlf),
+            'iban' => $faker->iban('ES'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')];
+
+        $usuario2 = ['id_user' => 2,
+            'id_comunidad' => null,
+            'nombre' => 'Admin',
+            'apellido1' => 'AdminCom1',
+            'apellido2' => 'UsuarioCom2',
+            'nif' => $faker->regexify($nif),
+            'email' => 'admin@com1.com',
+            'telefono' => $faker->numerify($tlf),
+            'iban' => $faker->iban('ES'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')];
+
+        //Propietarios comunidad 1
+        $usuario1['id_comunidad'] = $usuario2['id_comunidad'] = 1;
+        DB::table('propietarios')->insert([$usuario1, $usuario2]);
+
+        for ($i = 0; $i < 8; $i++) {
             DB::table('propietarios')->insert(
-                    ['nombre' => $faker->firstName,
+                    ['id_comunidad' => 1,
+                        'nombre' => $faker->firstName,
+                        'apellido1' => $faker->lastName,
+                        'apellido2' => $faker->lastName,
+                        'nif' => $faker->regexify($nif),
+                        'email' => $faker->unique()->safeEmail,
+                        'telefono' => $faker->numerify($tlf),
+                        'iban' => $faker->iban('ES'),
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s')]
+            );
+        }
+
+        //Propietarios comunidad 2
+        $usuario1['id_comunidad'] = $usuario2['id_comunidad'] = 2;
+        DB::table('propietarios')->insert([$usuario1, $usuario2]);
+        for ($i = 0; $i < 21; $i++) {
+            DB::table('propietarios')->insert(
+                    ['id_comunidad' => 2,
+                        'nombre' => $faker->firstName,
                         'apellido1' => $faker->lastName,
                         'apellido2' => $faker->lastName,
                         'nif' => $faker->regexify($nif),

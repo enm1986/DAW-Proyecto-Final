@@ -17,7 +17,7 @@ class CreateComunidadesTable extends Migration
             $table->id();
             $table->string('nombre', 100);
             $table->string('cif', 9)->unique();
-            $table->string('iban', 24)->nullable();
+            $table->string('direccion', 100);
             $table->binary('image')->nullable();
             $table->timestamps();
         });

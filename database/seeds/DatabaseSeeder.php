@@ -13,16 +13,16 @@ class DatabaseSeeder extends Seeder {
         $this->call([
             UserSeeder::class,
             ComunidadSeeder::class,
-            PortalSeeder::class,
+            LoginAccesoSeeder::class,
             TiposPropSeeder::class,
             PropiedadSeeder::class,
             PropietarioSeeder::class,
             PropPropSeeder::class,
-            LoginAccesoSeeder::class,
-            ProveedorSeeder::class,
-            ContPresupuestos::class,
-            ContPagosSeeder::class,
-            ContCobrosSeeder::class
+            //ProveedorSeeder::class,
+            //ContCuentas::class,
+            //ContPresupuestos::class,
+            //ContPagosSeeder::class,
+            //ContCobrosSeeder::class
         ]);
     }
     

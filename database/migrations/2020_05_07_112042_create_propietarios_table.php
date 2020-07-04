@@ -16,13 +16,14 @@ class CreatePropietariosTable extends Migration
         Schema::create('propietarios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_user')->nullable()->constrained('users');
+            $table->foreignId('id_comunidad')->nullable()->constrained('comunidades');
             $table->string('nombre');
             $table->string('apellido1');
             $table->string('apellido2');
-            $table->string('nif', 9)->unique();
+            $table->string('nif', 9);
             $table->string('telefono', 15);
             $table->string('email');
-            $table->string('iban', 24)->unique();
+            $table->string('iban', 24);
             $table->timestamps();
         });
     }

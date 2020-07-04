@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePortalesTable extends Migration
+class CreateContCuentasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreatePortalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('portales', function (Blueprint $table) {
+        Schema::create('cont_cuentas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
-            $table->string('direccion', 100);
+            $table->string('banco', 100);
+            $table->string('iban', 24);
+            $table->float('saldo_inicial', 18, 2);
+            $table->float('saldo_actual', 18, 2);
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreatePortalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('portales');
+        Schema::dropIfExists('cont_cuentas');
     }
 }

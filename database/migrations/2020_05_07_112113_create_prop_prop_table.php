@@ -16,7 +16,6 @@ class CreatePropPropTable extends Migration
         Schema::create('prop_prop', function (Blueprint $table) {
             $table->foreignId('id_propiedad')->constrained('propiedades')->onDelete('cascade');
             $table->foreignId('id_propietario')->constrained('propietarios')->onDelete('cascade');
-            $table->decimal('coef_propietario', 5, 2);
             $table->timestamps();
             $table->primary(['id_propiedad', 'id_propietario']);
         });

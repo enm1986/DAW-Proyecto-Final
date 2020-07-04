@@ -15,7 +15,7 @@ class CreatePropiedadesTable extends Migration
     {
         Schema::create('propiedades', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_portal')->constrained('portales')->onDelete('cascade');
+            $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
             $table->foreignId('id_tipo')->constrained('tipos_prop');
             $table->decimal('coeficiente', 5, 2);
             $table->string('descripcion');
