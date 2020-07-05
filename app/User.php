@@ -5,12 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class User extends Authenticatable implements MustVerifyEmail
-{
+class User extends Authenticatable implements MustVerifyEmail {
+
     use Notifiable;
 
     /**
@@ -39,42 +38,31 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     /**
-     * Comprueba si el usuario tiene acceso a una comunidad
-     * @param Request $request
-     * @return boolean
+     * Devuelve el tipo de acceso de un usuario sobre la comunidad
+     * @param int $id ID de la comunidad
+     * @return string 
      */
-    public function hasAccess(Request $request){
-        $acceso = $request->session()->get('c' . $request->input('cid'));
-        return !empty($acceso);
-    }
-    
-    /**
-     * Comprueba si un usuario es admin de una comunidad
-     * Comprueba con la BD
-     * @param int $comunidad
-     * @return boolean
-     */
-    public function isAdminDB(int $comunidad){
+    public function getAccess(int $id) {
         $acceso = DB::table('login_acceso')
-                ->select('tipo_acceso')
                 ->where([
-                            ['id_user', '=', $this->id],
-                            ['id_comunidad', '=', $comunidad],
-                        ])
-                ->get();
-        return $acceso[0]->tipo_acceso == 'admin';
+                    ['id_user', '=', $this->id],
+                    ['id_comunidad', '=', $id],
+                ])
+                ->value('tipo_acceso');
+        return $acceso;
     }
-    
+
     /**
      * Comprueba si un usuario es admin de una comunidad
      * Comprueba con los datos guardados en la sesión
      * @param Request $request
      * @return type
      */
-    public function isAdminSession(Request $request){
-        $acceso = $request->session()->get('c' . $request->input('cid'));
+    public function isAdminSession(Request $request, int $id) {
+        $acceso = $request->session()->get('c' . $id);
         return $acceso == 'admin';
     }
+
 }

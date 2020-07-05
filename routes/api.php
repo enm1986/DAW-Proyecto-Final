@@ -28,11 +28,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::put('comunidad/{id}', 'API\ComunidadesController@update');
     Route::delete('comunidad/{id}', 'API\ComunidadesController@delete');
 
-    Route::get('comunidad/{id}/portales', 'API\PortalesController@index');
-    Route::post('comunidad/portal', 'API\PortalesController@create');
-    Route::put('comunidad/portal/{id}', 'API\PortalesController@update');
-    Route::delete('comunidad/portal/{id}', 'API\PortalesController@delete');
-
     Route::get('comunidad/propiedades/tipos', 'API\PropiedadesController@tipos');
     Route::get('comunidad/{id}/propiedades', 'API\PropiedadesController@indexAdmin');
     Route::post('comunidad/propiedades', 'API\PropiedadesController@create');

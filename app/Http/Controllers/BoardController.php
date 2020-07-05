@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BoardController extends Controller {
 
@@ -16,30 +17,34 @@ class BoardController extends Controller {
      * @param Request $request
      * @return view
      */
-    public function index(Request $request) {
-        $parametros = ['comunidad_id' => $request->input('cid'),
-            'comunidad_nombre' => $request->input('nombre')];
-
-        if (Auth::user()->hasAccess($request)) {
-            return view('board', $parametros);
+    public function index(int $id) {
+        $acceso = Auth::user()->getAccess($id);
+        if (!empty($acceso)) {
+            return view('board', ['comunidad' => $this->getComunidad($id), 'acceso' => $acceso]);
         } else {
             return view('welcome');
         }
     }
-    
-    /**
-     * Redirecciona al usuario dependiendo de si es Admin de la comunidad
-     * @param Request $request
-     * @return view
-     */
-    public function admin(Request $request) {
-        $parametros = ['comunidad_id' => $request->input('cid')];
 
-        if (Auth::user()->isAdminSession($request)) {
-            return view('admin.home', $parametros);
+/**
+ * Redirecciona al usuario dependiendo de si es Admin de la comunidad
+ * @param int $id ID de la comunidad
+ * @return type
+ */
+    public function admin(int $id) {
+        $acceso = Auth::user()->getAccess($id);
+        if ($acceso == 'admin') {
+            return view('admin.board', ['comunidad' => $this->getComunidad($id), 'acceso' => $acceso]);
         } else {
             return view('welcome');
         }
+    }
+
+    private function getComunidad($id) {
+        $comunidad = DB::table('comunidades')
+                ->where('id', '=', $id)
+                ->get();
+        return $comunidad[0];
     }
 
 }

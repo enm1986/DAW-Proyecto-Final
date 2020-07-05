@@ -46,17 +46,6 @@ use AuthenticatesUsers;
      * @return mixed
      */
     protected function authenticated(Request $request, $user) {
-        // Guardamos en la session los accesos disponibles para el usuario
-        $lista = DB::table('login_acceso')
-                ->select('login_acceso.id_comunidad', 'login_acceso.tipo_acceso')
-                ->where('login_acceso.id_user', '=', $user->id)
-                ->get();
-
-        foreach ($lista as $acceso) {
-            $request->session()->put('c'.$acceso->id_comunidad, $acceso->tipo_acceso);
-        }
-
-        //return $request->session()->all();
         return redirect('home')->withCookie('api_token', $user->api_token, null, null, null, null, false);
     }
 

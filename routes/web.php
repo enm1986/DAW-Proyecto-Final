@@ -20,7 +20,5 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::redirect('/comunidad', '/home');
-Route::redirect('/comunidad/admin', '/home');
-Route::post('/comunidad', 'BoardController@index');
-Route::post('/comunidad/admin', 'BoardController@admin');
+Route::get('/comunidad/{id}', 'BoardController@index');
+Route::get('/comunidad/{id}/admin', 'BoardController@admin');

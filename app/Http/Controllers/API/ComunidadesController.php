@@ -16,7 +16,7 @@ class ComunidadesController extends Controller {
     public function index() {
         $comunidades = DB::table('login_acceso')
                 ->join('comunidades', 'login_acceso.id_comunidad', '=', 'id')
-                ->select('comunidades.id', 'comunidades.nombre',
+                ->select('comunidades.id', 'comunidades.nombre', 'comunidades.direccion',
                         'login_acceso.tipo_acceso', 'comunidades.image')
                 ->where('login_acceso.id_user', '=', Auth::id())
                 ->get();
@@ -41,12 +41,12 @@ class ComunidadesController extends Controller {
         $comunidad = DB::table('comunidades')->insertGetId([
             'nombre' => $request->input('nombre'),
             'cif' => $request->input('cif'),
-            'iban' => $request->input('iban'),
+            'direccion' => $request->input('direccion'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
 
-        $acceso = DB::table('login_acceso')->insert([
+        DB::table('login_acceso')->insert([
             'id_comunidad' => $comunidad,
             'id_user' => Auth::id(),
             'tipo_acceso' => 'admin',
@@ -55,20 +55,19 @@ class ComunidadesController extends Controller {
         ]);
 
         return response()->json([
-                    'message' => 'Comunidad created',
-                    'insert comunidad' => $comunidad,
-                    'insert acceso' => $acceso
+                    'message' => 'Comunidad creada',
+                    'id' => $comunidad
         ]);
     }
 
     public function update(Request $request, int $id) {
-        
+
         $affected = DB::table('comunidades')
                 ->where('id', $id)
                 ->update([
             'nombre' => $request->input('nombre'),
             'cif' => $request->input('cif'),
-            'iban' => $request->input('iban'),
+            'direccion' => $request->input('direccion'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
 

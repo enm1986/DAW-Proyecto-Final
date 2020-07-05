@@ -9,13 +9,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method='POST' action="/comunidad">
-                            <input type="hidden" name="_token" v-bind:value="csrfToken">
-                            <input type="hidden" name='nombre' v-bind:value="comunidad.nombre">
-                            <input type="hidden" name='cid' v-bind:value="comunidad.id">
-                            <input type="submit" value="Entrar">
-                        </form>
-
+                        <a class="btn btn-secondary btn-block" v-bind:href="'/comunidad/' + comunidad.id" role="button">Entrar</a>
                     </div>
                 </div>
             </div>

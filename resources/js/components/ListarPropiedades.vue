@@ -1,19 +1,22 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card mb-2" v-for="propiedad in propiedades" v-bind:key="propiedad.id">
-                    <div class="card-header"> 
-                        <span>{{ propiedad.direccion }}</span>
-                        <span>{{ propiedad.descripcion }}</span>
-                    </div>
-
-                    <div class="card-body">
-                        <span>{{ propiedad.tipo }}</span>
-                        <span>Coeficiente: {{ propiedad.coeficiente }}%</span>
-                    </div>
-                </div>
-            </div>
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Coeficiente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="propiedad in propiedades" v-bind:key="propiedad.id">
+                        <td>{{ propiedad.tipo }}</td>
+                        <td>{{ propiedad.descripcion }}</td>
+                        <td>{{ propiedad.coeficiente }} %</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
@@ -50,5 +53,9 @@
     .card-header, .card-body{
         display: flex;
         justify-content: space-between;
+    }
+    table {
+        font-size: 0.9em;
+        text-align: center;
     }
 </style>

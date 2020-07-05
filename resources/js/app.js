@@ -22,7 +22,8 @@ Vue.use(require('vue-cookies'));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('listar-comunidades', require('./components/ListarComunidades.vue').default);
-Vue.component('listar-prop-user', require('./components/ListarPropiedadesUser.vue').default);
+Vue.component('listar-propiedades', require('./components/ListarPropiedades.vue').default);
+Vue.component('crear-comunidad', require('./components/CrearComunidad.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

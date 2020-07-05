@@ -16,14 +16,12 @@ class PropiedadesController extends Controller {
      */
     public function index($id) {
         $propiedades = DB::table('propiedades')
-                        ->join('portales', 'propiedades.id_portal', '=', 'portales.id')
                         ->join('prop_prop', 'propiedades.id', '=', 'prop_prop.id_propiedad')
                         ->join('propietarios', 'prop_prop.id_propietario', '=', 'propietarios.id')
                         ->join('tipos_prop', 'propiedades.id_tipo', '=', 'tipos_prop.id')
-                        ->select('portales.direccion', 'propiedades.coeficiente',
-                                'propiedades.descripcion', 'tipos_prop.tipo')
+                        ->select('tipos_prop.tipo', 'propiedades.descripcion','propiedades.coeficiente')
                         ->where([
-                            ['portales.id_comunidad', '=', $id],
+                            ['propiedades.id_comunidad', '=', $id],
                             ['propietarios.id_user', '=', Auth::id()],
                         ])->get();
         return $propiedades;
@@ -35,23 +33,21 @@ class PropiedadesController extends Controller {
 
     public function indexAdmin($id) {
         $propiedades = DB::table('propiedades')
-                        ->join('portales', 'propiedades.id_portal', '=', 'portales.id')
                         ->join('prop_prop', 'propiedades.id', '=', 'prop_prop.id_propiedad')
                         ->select('propiedades.id',
-                                'portales.direccion',
                                 'propiedades.id_tipo',
                                 'propiedades.descripcion',
                                 'propiedades.coeficiente'
                         )
                         ->where([
-                            ['portales.id_comunidad', '=', $id]
+                            ['ppropiedades.id_comunidad', '=', $id]
                         ])->get();
         return $propiedades;
     }
 
     public function create(Request $request) {
         $propiedad = DB::table('propiedades')->insertGetId([
-            'id_portal' => $request->input('id_portal'),
+            'id_comunidad' => $request->input('id_comunidad'),
             'id_tipo' => $request->input('id_tipo'),
             'coeficiente' => $request->input('coeficiente'),
             'descripcion' => $request->input('descripcion'),
