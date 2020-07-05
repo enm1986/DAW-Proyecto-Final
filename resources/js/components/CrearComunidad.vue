@@ -1,16 +1,16 @@
 <template>
     <div class="container">
         <div class="modal-body">
-            <div>
-                <label for="nombre">Nombre</label>
+            <div class="d-flex flex-row align-content-center mb-2">
+                <label for="nombre" class="align-self-center">Nombre</label>
                 <input id="nombre" v-model="nombre" type="text"/>
             </div>
-            <div>
-                <label for="cif">CIF</label>
+            <div class="d-flex flex-row mb-2">
+                <label for="cif" class="align-self-center">CIF</label>
                 <input id="cif" v-model="cif" type="text"/>
             </div>
-            <div>
-                <label for="direccion">Dirección</label>
+            <div class="d-flex flex-row mb-2">
+                <label for="direccion" class="align-self-center">Dirección</label>
                 <input id="direccion" v-model="direccion" type="text"/>
             </div>
         </div>
@@ -51,12 +51,15 @@
                             }
                         })
                         .then(function (response) {
-                            window.location = "/comunidad/" + response.data.id + "/admin";
+                            window.location = "/comunidad/" + response.data.id;
                         });
             }
         }
     }
 </script>
 <style scoped>
-
+    label{
+        width: 140px;
+        margin: 0;
+    }
 </style>
