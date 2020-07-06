@@ -1,6 +1,6 @@
 ## Remoto:
 
-[Administrador de propiedades](enavarro.sytes.net)
+[Administrador de propiedades](http://enavarro.sytes.net)
 
 ## Usuario de prueba
 
