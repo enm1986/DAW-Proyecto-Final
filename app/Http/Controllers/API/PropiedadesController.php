@@ -33,16 +33,19 @@ class PropiedadesController extends Controller {
 
     public function indexAll($id) {
         $propiedades = DB::table('propiedades')
-                        ->join('tipos_prop', 'propiedades.id_tipo', '=', 'tipos_prop.id')
-                        ->select('propiedades.id',
-                                'propiedades.id_tipo',
-                                'tipos_prop.tipo',
-                                'propiedades.descripcion',
-                                'propiedades.coeficiente'
-                        )
-                        ->where([
-                            ['propiedades.id_comunidad', '=', $id]
-                        ])->get();
+                ->join('tipos_prop', 'propiedades.id_tipo', '=', 'tipos_prop.id')
+                ->select('propiedades.id',
+                        'propiedades.id_tipo',
+                        'tipos_prop.tipo',
+                        'propiedades.descripcion',
+                        'propiedades.coeficiente'
+                )
+                ->where([
+                    ['propiedades.id_comunidad', '=', $id]
+                ])
+                ->orderBy('propiedades.id_tipo')
+                ->orderBy('propiedades.descripcion')
+                ->get();
         return $propiedades;
     }
 
@@ -67,6 +70,7 @@ class PropiedadesController extends Controller {
         $affected = DB::table('propiedades')
                 ->where('id', $propiedad)
                 ->update([
+            'id_tipo' => $request->input('tipo'),
             'coeficiente' => $request->input('coeficiente'),
             'descripcion' => $request->input('descripcion'),
             'updated_at' => date('Y-m-d H:i:s')
