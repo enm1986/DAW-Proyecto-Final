@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Proyecto'),
+    'name' => env('APP_NAME', 'Administrador de Comunidades'),
 
     /*
     |--------------------------------------------------------------------------
