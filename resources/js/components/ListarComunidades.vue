@@ -21,23 +21,22 @@
     export default {
         data: function () {
             return{
-                csrfToken: null,
-                api_token: $cookies.get("api_token"),
+                //csrfToken: null,
+                bearer: 'Bearer ' + $cookies.get("api_token"),
                 comunidades: null
             };
         },
         mounted() {
-            this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
+            //this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
             this.getComunidades();
             console.log('Component mounted.')
         },
         methods: {
             //obtener comunidades            
             getComunidades: function () {
-                let bearer = 'Bearer ' + this.api_token;
                 axios.get('/api/comunidades', {
                     headers: {
-                        'Authorization': bearer
+                        'Authorization': this.bearer
                     }
                 })
                         .then(response => (this.comunidades = response.data));

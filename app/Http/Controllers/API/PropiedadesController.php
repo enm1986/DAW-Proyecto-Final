@@ -14,12 +14,12 @@ class PropiedadesController extends Controller {
      * @param type $id ID de una comunidad
      * @return type [{direccion, coeficiente, descripcion, tipo}, ...]
      */
-    public function index($id) {
+    public function indexUser($id) {
         $propiedades = DB::table('propiedades')
                         ->join('prop_prop', 'propiedades.id', '=', 'prop_prop.id_propiedad')
                         ->join('propietarios', 'prop_prop.id_propietario', '=', 'propietarios.id')
                         ->join('tipos_prop', 'propiedades.id_tipo', '=', 'tipos_prop.id')
-                        ->select('tipos_prop.tipo', 'propiedades.descripcion','propiedades.coeficiente')
+                        ->select('tipos_prop.tipo', 'propiedades.descripcion', 'propiedades.coeficiente')
                         ->where([
                             ['propiedades.id_comunidad', '=', $id],
                             ['propietarios.id_user', '=', Auth::id()],
@@ -31,16 +31,17 @@ class PropiedadesController extends Controller {
         return DB::table('tipos_prop')->get();
     }
 
-    public function indexAdmin($id) {
+    public function indexAll($id) {
         $propiedades = DB::table('propiedades')
-                        ->join('prop_prop', 'propiedades.id', '=', 'prop_prop.id_propiedad')
+                        ->join('tipos_prop', 'propiedades.id_tipo', '=', 'tipos_prop.id')
                         ->select('propiedades.id',
                                 'propiedades.id_tipo',
+                                'tipos_prop.tipo',
                                 'propiedades.descripcion',
                                 'propiedades.coeficiente'
                         )
                         ->where([
-                            ['ppropiedades.id_comunidad', '=', $id]
+                            ['propiedades.id_comunidad', '=', $id]
                         ])->get();
         return $propiedades;
     }
@@ -61,10 +62,10 @@ class PropiedadesController extends Controller {
         ]);
     }
 
-    public function update(Request $request, int $id) {
+    public function update(Request $request, int $id, int $propiedad) {
 
-        $affected = DB::table('comunidades')
-                ->where('id', $id)
+        $affected = DB::table('propiedades')
+                ->where('id', $propiedad)
                 ->update([
             'coeficiente' => $request->input('coeficiente'),
             'descripcion' => $request->input('descripcion'),
@@ -77,10 +78,10 @@ class PropiedadesController extends Controller {
         ]);
     }
 
-    public function delete(int $id) {
+    public function delete(int $id, int $propiedad) {
 
         $deleted = DB::table('propiedades')
-                ->where('id', $id)
+                ->where('id', $propiedad)
                 ->delete();
 
         return response()->json([

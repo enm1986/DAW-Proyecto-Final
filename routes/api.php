@@ -20,19 +20,25 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('comunidades', 'API\ComunidadesController@index');
-    Route::get('propiedades/{id}', 'API\PropiedadesController@index');
+    Route::get('propiedades/{id}', 'API\PropiedadesController@indexUser');
 
-    //ADMIN
     Route::get('comunidad/{id}', 'API\ComunidadesController@show');
     Route::post('comunidad', 'API\ComunidadesController@create');
-    Route::put('comunidad/{id}', 'API\ComunidadesController@update');
-    Route::delete('comunidad/{id}', 'API\ComunidadesController@delete');
 
-    Route::get('comunidad/propiedades/tipos', 'API\PropiedadesController@tipos');
-    Route::get('comunidad/{id}/propiedades', 'API\PropiedadesController@indexAdmin');
-    Route::post('comunidad/propiedades', 'API\PropiedadesController@create');
-    Route::put('comunidad/propiedades/{id}', 'API\PropiedadesController@update');
-    Route::delete('comunidad/propiedades/{id}', 'API\PropiedadesController@delete');
+
+    //ADMIN
+    Route::group(['middleware' => 'checkAdmin'], function() {
+        Route::put('comunidad/{id}', 'API\ComunidadesController@update');
+        Route::delete('comunidad/{id}', 'API\ComunidadesController@delete');
+
+        Route::get('comunidad/{id}/propiedades', 'API\PropiedadesController@indexAll');
+        Route::get('comunidad/{id}/propiedades/tipos', 'API\PropiedadesController@tipos');
+        Route::post('comunidad/{id}/propiedades', 'API\PropiedadesController@create');
+        Route::put('comunidad/{id}/propiedades/{propiedad}', 'API\PropiedadesController@update');
+        Route::delete('comunidad/{id}/propiedades/{propiedad}', 'API\PropiedadesController@delete');
+    });
+
+
 
     Route::get('comunidad/{id}/propietarios', 'API\PropietariosController@index');
     Route::post('comunidad/propietarios', 'API\PropietariosController@create');

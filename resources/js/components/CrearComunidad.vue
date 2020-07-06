@@ -26,7 +26,7 @@
         data: function () {
             return{
                 //csrfToken: null,
-                api_token: $cookies.get("api_token"),
+                bearer: 'Bearer ' + $cookies.get("api_token"),
                 nombre: null,
                 cif: null,
                 direccion: null,
@@ -38,7 +38,6 @@
         },
         methods: {
             crearComunidad: function () {
-                let bearer = 'Bearer ' + this.api_token;
                 axios.post('/api/comunidad',
                         {//datos
                             nombre: this.nombre,
@@ -47,11 +46,16 @@
                         },
                         {//config
                             headers: {
-                                'Authorization': bearer
+                                'Authorization': this.bearer
                             }
                         })
-                        .then(function (response) {
+                        .then(response => {
+                            alert("Comunidad creada");
                             window.location = "/comunidad/" + response.data.id;
+                        })
+                        .catch(error => {
+                            alert("NO se ha podido crear la comunidad");
+                            console.log(error.response);
                         });
             }
         }

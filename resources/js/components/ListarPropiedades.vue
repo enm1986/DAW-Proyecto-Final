@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <table class="table table-sm table-striped table-bordered">
+            <table class="table table-sm table-striped table-bordered" v-if="propiedades.length > 0">
                 <thead>
                     <tr>
                         <th scope="col">Tipo</th>
@@ -17,6 +17,7 @@
                     </tr>
                 </tbody>
             </table>
+            <span v-else>No tienes propiedades</span>
         </div>
     </div>
 </template>
@@ -26,8 +27,8 @@
         props: ['com_id'],
         data: function () {
             return{
-                api_token: $cookies.get("api_token"),
-                propiedades: null
+                bearer: 'Bearer ' + $cookies.get("api_token"),
+                propiedades: null,
             };
         },
         mounted() {
@@ -36,17 +37,13 @@
         },
         methods: {
             getPropiedades: function () {
-                let bearer = 'Bearer ' + this.api_token;
                 axios.get('/api/propiedades/' + this.com_id, {
                     headers: {
-                        'Authorization': bearer
+                        'Authorization': this.bearer
                     }
-                })
-                        .then(response => (this.propiedades = response.data));
+                }).then(response => (this.propiedades = response.data));
             }
-
         }
-
     }
 </script>
 <style scoped>

@@ -26,18 +26,24 @@ class BoardController extends Controller {
         }
     }
 
-/**
- * Redirecciona al usuario dependiendo de si es Admin de la comunidad
- * @param int $id ID de la comunidad
- * @return type
- */
     public function admin(int $id) {
-        $acceso = Auth::user()->getAccess($id);
-        if ($acceso == 'admin') {
-            return view('admin.board', ['comunidad' => $this->getComunidad($id), 'acceso' => $acceso]);
-        } else {
-            return view('welcome');
-        }
+        return view('admin.board', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
+    }
+
+    public function datos(int $id) {
+        return view('admin.datos', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
+    }
+
+    public function propiedades(int $id) {
+        return view('admin.propiedades', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
+    }
+
+    public function propietarios(int $id) {
+        return view('admin.propietarios', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
+    }
+
+    public function asignar(int $id) {
+        return view('admin.asignar', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
     }
 
     private function getComunidad($id) {
