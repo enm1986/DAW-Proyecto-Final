@@ -1,6 +1,11 @@
 <template>
     <div class="container p-0">
         <div class="row justify-content-center">
+            <div>
+                <span>Coeficiente Total: </span>
+                <span v-bind:class="{'coefmax': isCoefMax(), 'text-danger': !isCoefMax()}">{{ coefTotal }} %</span>       
+            </div>
+
             <table class="table table-sm table-striped table-bordered">
                 <thead>
                     <tr>
@@ -47,7 +52,7 @@
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <label for="coeficiente" class="align-self-center">Coeficiente</label>
-                            <input id="coeficiente" v-model="modalCoef" type="number"/> %
+                            <input id="coeficiente" v-model="modalCoef" type="number" step="0.01"/> %
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -67,12 +72,13 @@
         data: function () {
             return{
                 bearer: 'Bearer ' + $cookies.get("api_token"),
-                propiedades: null,
-                tipos: null,
+                propiedades: [],
+                tipos: [],
                 modalId: null,
                 modalTipo: "",
                 modalDesc: "",
-                modalCoef: 0
+                modalCoef: 0,
+                modalCoefAnt: 0
             };
         },
         mounted() {
@@ -80,7 +86,19 @@
             this.getPropiedades();
             console.log('Component mounted.');
         },
+        computed: {
+            coefTotal: function () {
+                let total = 0;
+                this.propiedades.forEach(function (propiedad) {
+                    total += Number.parseFloat(propiedad.coeficiente);
+                });
+                return total;
+            }
+        },
         methods: {
+            isCoefMax: function () {
+                return this.coefTotal === 100;
+            },
             getTipos: function () {
                 axios.get('/api/comunidad/' + this.comunidad_id + '/propiedades/tipos', {
                     headers: {
@@ -101,29 +119,34 @@
                 this.modalId = propiedad.id;
                 this.modalTipo = propiedad.id_tipo;
                 this.modalDesc = propiedad.descripcion;
-                this.modalCoef = propiedad.coeficiente;
+                this.modalCoef = Number.parseFloat(propiedad.coeficiente);
+                this.modalCoefAnt = Number.parseFloat(propiedad.coeficiente);
             },
             updatePropiedad: function () {
-                axios.put('/api/comunidad/' + this.comunidad_id + '/propiedades/' + this.modalId,
-                        {//datos
-                            tipo: this.modalTipo,
-                            descripcion: this.modalDesc,
-                            coeficiente: this.modalCoef
-                        },
-                        {//config
-                            headers: {
-                                'Authorization': this.bearer
-                            }
-                        })
-                        .then(response => {
-                            alert("Propiedad modificada");
-                        })
-                        .catch(error => {
-                            alert("Imposible modificar la propiedad");
-                            window.location.reload();
-                            console.log(error.response);
-                        });
-                window.location.reload();
+                if ((this.coefTotal - this.modalCoefAnt + Number.parseFloat(this.modalCoef)) <= 100) {
+                    axios.put('/api/comunidad/' + this.comunidad_id + '/propiedades/' + this.modalId,
+                            {//datos
+                                tipo: this.modalTipo,
+                                descripcion: this.modalDesc,
+                                coeficiente: this.modalCoef
+                            },
+                            {//config
+                                headers: {
+                                    'Authorization': this.bearer
+                                }
+                            })
+                            .then(response => {
+                                alert("Propiedad modificada");
+                            })
+                            .catch(error => {
+                                alert("Imposible modificar la propiedad");
+                                window.location.reload();
+                                console.log(error.response);
+                            });
+                    window.location.reload();
+                } else {
+                    alert('No se debe superar el 100% de Coeficiente Total');
+                }
             },
             deletePropiedad: function (id) {
                 axios.delete('/api/comunidad/' + this.comunidad_id + '/propiedades/' + id,
@@ -149,5 +172,8 @@
     label{
         width: 80px;
         margin: 0;
+    }
+    .coefmax{
+        color: green !important;
     }
 </style>
