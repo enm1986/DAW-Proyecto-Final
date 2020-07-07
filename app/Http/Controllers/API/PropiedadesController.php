@@ -49,9 +49,9 @@ class PropiedadesController extends Controller {
         return $propiedades;
     }
 
-    public function create(Request $request) {
+    public function create(Request $request, int $id) {
         $propiedad = DB::table('propiedades')->insertGetId([
-            'id_comunidad' => $request->input('id_comunidad'),
+            'id_comunidad' => $id,
             'id_tipo' => $request->input('id_tipo'),
             'coeficiente' => $request->input('coeficiente'),
             'descripcion' => $request->input('descripcion'),
