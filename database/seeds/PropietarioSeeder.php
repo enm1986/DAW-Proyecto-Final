@@ -22,8 +22,6 @@ class PropietarioSeeder extends Seeder {
         $usuario1 = ['id_user' => 1,
             'id_comunidad' => null,
             'nombre' => 'Usuario',
-            'apellido1' => 'UsuarioCom1',
-            'apellido2' => 'UsuarioCom2',
             'nif' => $faker->regexify($nif),
             'email' => 'usuario@com1.com',
             'telefono' => $faker->numerify($tlf),
@@ -34,8 +32,6 @@ class PropietarioSeeder extends Seeder {
         $usuario2 = ['id_user' => 2,
             'id_comunidad' => null,
             'nombre' => 'Admin',
-            'apellido1' => 'AdminCom1',
-            'apellido2' => 'UsuarioCom2',
             'nif' => $faker->regexify($nif),
             'email' => 'admin@com1.com',
             'telefono' => $faker->numerify($tlf),
@@ -50,9 +46,7 @@ class PropietarioSeeder extends Seeder {
         for ($i = 0; $i < 8; $i++) {
             DB::table('propietarios')->insert(
                     ['id_comunidad' => 1,
-                        'nombre' => $faker->firstName,
-                        'apellido1' => $faker->lastName,
-                        'apellido2' => $faker->lastName,
+                        'nombre' => $faker->name,
                         'nif' => $faker->regexify($nif),
                         'email' => $faker->unique()->safeEmail,
                         'telefono' => $faker->numerify($tlf),
@@ -68,9 +62,7 @@ class PropietarioSeeder extends Seeder {
         for ($i = 0; $i < 21; $i++) {
             DB::table('propietarios')->insert(
                     ['id_comunidad' => 2,
-                        'nombre' => $faker->firstName,
-                        'apellido1' => $faker->lastName,
-                        'apellido2' => $faker->lastName,
+                        'nombre' => $faker->name,
                         'nif' => $faker->regexify($nif),
                         'email' => $faker->unique()->safeEmail,
                         'telefono' => $faker->numerify($tlf),

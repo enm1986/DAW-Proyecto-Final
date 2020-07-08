@@ -36,12 +36,21 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::post('comunidad/{id}/propiedades', 'API\PropiedadesController@create');
         Route::put('comunidad/{id}/propiedades/{propiedad}', 'API\PropiedadesController@update');
         Route::delete('comunidad/{id}/propiedades/{propiedad}', 'API\PropiedadesController@delete');
+        
+        Route::get('comunidad/{id}/propietarios', 'API\PropietariosController@index');
+        Route::post('comunidad/{id}/propietarios', 'API\PropietariosController@create');
+        Route::put('comunidad/{id}/propietarios/{propietario}', 'API\PropietariosController@update');
+        Route::delete('comunidad/{id}/propietarios/{propietario}', 'API\PropietariosController@delete');
+        
+        Route::get('comunidad/{id}/asignar', 'API\PropPropController@index');
+        Route::post('comunidad/{id}/asignar', 'API\PropPropController@create');
+        Route::delete('comunidad/{id}/asignar', 'API\PropPropController@delete');
     });
 
 
 
-    Route::get('comunidad/{id}/propietarios', 'API\PropietariosController@index');
-    Route::post('comunidad/propietarios', 'API\PropietariosController@create');
-    Route::put('comunidad/propietarios/{id}', 'API\PropietariosController@update');
-    Route::delete('comunidad/propietarios/{id}', 'API\PropietariosController@delete');
+    
+    
+    
+    
 });

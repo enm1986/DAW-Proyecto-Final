@@ -2,7 +2,7 @@
     <div class="container p-0">
         <div class="row justify-content-center">
             <div id="crear" class="d-flex flex-wrap justify-content-between align-items-center my-2">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modificar" v-on:click="prepareCreate()">Insertar Propiedad</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modificar" v-on:click="prepareCreate()">Insertar Propiedad</button>
                 <div>
                     <span>Coeficiente Total: </span>
                     <span v-bind:class="{'text-success': isCoefMax(), 'text-danger': !isCoefMax()}">{{ coefTotal }} %</span>       
@@ -19,13 +19,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="propiedad in propiedadesMostradas" v-bind:key="propiedad.id">
+                    <tr v-for="propiedad in elementosMostrados" v-bind:key="propiedad.id">
                         <td class="d-none d-md-table-cell">{{ propiedad.tipo }}</td>
                         <td>{{ propiedad.descripcion }}</td>
                         <td>{{ propiedad.coeficiente }} %</td>
                         <td>
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modificar" v-on:click="prepareUpdate(propiedad)"><i class="far fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger btn-sm" v-on:click="deletePropiedad(propiedad.id)"><i class="far fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-danger btn-sm" v-on:click="deleteItem(propiedad.id)"><i class="far fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -37,7 +37,7 @@
                         <button type="button" class="page-link" v-if="pagina != 1" @click="pagina--">&laquo;</button>
                     </li>
                     <li class="page-item">
-                        <button type="button" class="page-link" v-for="npagina in paginas.slice(pagina-1, pagina+5)" @click="pagina=npagina">{{npagina}}</button>
+                        <button type="button" class="page-link" v-bind:class="{'bg-info text-light': pagina==npagina}" v-for="npagina in paginas.slice(pagina-5, pagina+5)" @click="pagina=npagina">{{npagina}}</button>
                     </li>
                     <li class="page-item">
                         <button type="button" class="page-link" v-if="pagina < paginas.length" @click="pagina++">&raquo;</button>
@@ -70,13 +70,13 @@
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <label for="coeficiente" class="align-self-center">Coeficiente</label>
-                            <input id="coeficiente" v-model="modalCoef" type="number" step="0.01"/> %
+                            <input id="coeficiente" v-model="modalCoef" type="number" min="0" max="100" step="0.01"/> %
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" v-if="modalForm == 'create'" v-on:click="createPropiedad">Insertar</button>
-                        <button type="button" class="btn btn-primary" v-else v-on:click="updatePropiedad">Actualizar</button>
+                        <button type="button" class="btn btn-primary" v-if="modalForm == 'create'" v-on:click="createItem">Insertar</button>
+                        <button type="button" class="btn btn-primary" v-else v-on:click="updateItem">Actualizar</button>
                     </div>
                 </div>
             </div>
@@ -120,13 +120,13 @@
                 });
                 return total;
             },
-            propiedadesMostradas: function () {
+            elementosMostrados: function () {
                 return this.paginar(this.propiedades);
             }
         },
         watch: {
             propiedades: function () {
-                this.setPaginador();
+                this.setPaginador(this.propiedades);
             }
         },
         methods: {
@@ -153,7 +153,7 @@
                 this.modalDesc = propiedad.descripcion;
                 this.modalCoef = this.modalCoefAnt = Number.parseFloat(propiedad.coeficiente);
             },
-            updatePropiedad: function () {
+            updateItem: function () {
                 if ((this.coefTotal - this.modalCoefAnt + Number.parseFloat(this.modalCoef)) <= 100) {
                     axios.put('/api/comunidad/' + this.comunidad_id + '/propiedades/' + this.modalId,
                             {//datos
@@ -179,7 +179,7 @@
                     alert('No se debe superar el 100% de Coeficiente Total');
                 }
             },
-            deletePropiedad: function (id) {
+            deleteItem: function (id) {
                 if (confirm('¿Eliminar propiedad?')) {
                     axios.delete('/api/comunidad/' + this.comunidad_id + '/propiedades/' + id,
                             {//config
@@ -205,7 +205,7 @@
                 this.modalDesc = '';
                 this.modalCoef = this.modalCoefAnt = 0;
             },
-            createPropiedad: function () {
+            createItem: function () {
                 if ((this.coefTotal + Number.parseFloat(this.modalCoef)) <= 100) {
                     axios.post('/api/comunidad/' + this.comunidad_id + '/propiedades',
                             {//datos
@@ -234,18 +234,18 @@
             isCoefMax: function () {
                 return this.coefTotal === 100;
             },
-            setPaginador: function () {
-                let npaginas = Math.ceil(this.propiedades.length / this.porPagina);
+            setPaginador: function (items) {
+                let npaginas = Math.ceil(items.length / this.porPagina);
                 for (let i = 1; i <= npaginas; i++) {
                     this.paginas.push(i);
                 }
             },
-            paginar: function (propiedades) {
+            paginar: function (items) {
                 let pagina = this.pagina;
                 let porPagina = this.porPagina;
                 let desde = (this.pagina * this.porPagina) - this.porPagina;
                 let hasta = (this.pagina * this.porPagina);
-                return propiedades.slice(desde, hasta);
+                return items.slice(desde, hasta);
             }
         }
     }
@@ -258,7 +258,7 @@
         display: inline-block;
     }
     table{
-        font-size: 0.95em;
+        font-size: 0.9em;
         text-align: center;
     }
     td {

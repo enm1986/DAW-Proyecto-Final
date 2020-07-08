@@ -16,10 +16,8 @@ class CreatePropietariosTable extends Migration
         Schema::create('propietarios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_user')->nullable()->constrained('users');
-            $table->foreignId('id_comunidad')->nullable()->constrained('comunidades');
+            $table->foreignId('id_comunidad')->constrained('comunidades');
             $table->string('nombre');
-            $table->string('apellido1');
-            $table->string('apellido2');
             $table->string('nif', 9);
             $table->string('telefono', 15);
             $table->string('email');

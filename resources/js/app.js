@@ -26,6 +26,8 @@ Vue.component('listar-propiedades', require('./components/ListarPropiedades.vue'
 Vue.component('crear-comunidad', require('./components/CrearComunidad.vue').default);
 Vue.component('comunidad-datos', require('./components/ComunidadDatos.vue').default);
 Vue.component('comunidad-propiedades', require('./components/ComunidadPropiedades.vue').default);
+Vue.component('comunidad-propietarios', require('./components/ComunidadPropietarios.vue').default);
+Vue.component('comunidad-asignar', require('./components/ComunidadAsignar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
