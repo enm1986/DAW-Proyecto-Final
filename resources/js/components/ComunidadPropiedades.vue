@@ -37,7 +37,7 @@
                         <button type="button" class="page-link" v-if="pagina != 1" @click="pagina--">&laquo;</button>
                     </li>
                     <li class="page-item">
-                        <button type="button" class="page-link" v-bind:class="{'bg-info text-light': pagina==npagina}" v-for="npagina in paginas.slice(pagina-5, pagina+5)" @click="pagina=npagina">{{npagina}}</button>
+                        <button type="button" class="page-link" v-bind:class="{'bg-info text-light': pagina==npagina}" v-for="npagina in paginas.slice(pagina-2 > 0 ? pagina-2 : 0, pagina+1)" @click="pagina=npagina">{{npagina}}</button>
                     </li>
                     <li class="page-item">
                         <button type="button" class="page-link" v-if="pagina < paginas.length" @click="pagina++">&raquo;</button>
