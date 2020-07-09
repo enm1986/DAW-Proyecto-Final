@@ -21,6 +21,16 @@ class PropietarioSeeder extends Seeder {
         //Usuarios que estarán en las 2 comunidades
         $usuario1 = ['id_user' => 1,
             'id_comunidad' => null,
+            'nombre' => 'Admin',
+            'nif' => $faker->regexify($nif),
+            'email' => 'admin@com1.com',
+            'telefono' => $faker->numerify($tlf),
+            'iban' => $faker->iban('ES'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')];
+        
+        $usuario2 = ['id_user' => null,
+            'id_comunidad' => null,
             'nombre' => 'Usuario',
             'nif' => $faker->regexify($nif),
             'email' => 'usuario@com1.com',
@@ -29,15 +39,7 @@ class PropietarioSeeder extends Seeder {
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')];
 
-        $usuario2 = ['id_user' => 2,
-            'id_comunidad' => null,
-            'nombre' => 'Admin',
-            'nif' => $faker->regexify($nif),
-            'email' => 'admin@com1.com',
-            'telefono' => $faker->numerify($tlf),
-            'iban' => $faker->iban('ES'),
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')];
+
 
         //Propietarios comunidad 1
         $usuario1['id_comunidad'] = $usuario2['id_comunidad'] = 1;

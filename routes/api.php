@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get('comunidad/{id}', 'API\ComunidadesController@show');
     Route::post('comunidad', 'API\ComunidadesController@create');
+    Route::post('acceso', 'API\LoginAccesoController@create');
 
 
     //ADMIN
