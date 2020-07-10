@@ -15,36 +15,41 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-sol" role="tabpanel" aria-labelledby="nav-sol-tab">
-                    <div class="modal-body">
-                        <div class="d-flex flex-row align-content-center mb-2">
-                            <label for="solcif" class="align-self-center">CIF</label>
-                            <input id="solcif" v-model="solcif" type="text"/>
+                    <form autocomplete="off" v-on:submit.prevent="crearAcceso">
+                        <div class="modal-body">
+                            <div class="d-flex flex-row align-content-center mb-2">
+                                <label for="solcif" class="align-self-center">CIF</label>
+                                <input id="solcif" v-model="solcif" type="text" required pattern="H[0-9]{8}"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" v-on:click="crearAcceso">Solicitar</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Solicitar</button>
+                        </div>
+                    </form>
+
                 </div>
                 <div class="tab-pane fade" id="nav-crea" role="tabpanel" aria-labelledby="nav-crea-tab">
-                    <div class="modal-body">
-                        <div class="d-flex flex-row align-content-center mb-2">
-                            <label for="nombre" class="align-self-center">Nombre</label>
-                            <input id="nombre" v-model="nombre" type="text"/>
+                    <form autocomplete="off" v-on:submit.prevent="crearComunidad">
+                        <div class="modal-body">
+                            <div class="d-flex flex-row align-content-center mb-2">
+                                <label for="nombre" class="align-self-center">Nombre</label>
+                                <input id="nombre" v-model="nombre" type="text" required/>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <label for="cif" class="align-self-center">CIF</label>
+                                <input id="cif" v-model="cif" type="text" required pattern="H[0-9]{8}"/>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <label for="direccion" class="align-self-center">Dirección</label>
+                                <input id="direccion" v-model="direccion" type="text" required/>
+                            </div>
                         </div>
-                        <div class="d-flex flex-row mb-2">
-                            <label for="cif" class="align-self-center">CIF</label>
-                            <input id="cif" v-model="cif" type="text"/>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Crear Comunidad</button>
                         </div>
-                        <div class="d-flex flex-row mb-2">
-                            <label for="direccion" class="align-self-center">Dirección</label>
-                            <input id="direccion" v-model="direccion" type="text"/>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" v-on:click="crearComunidad">Crear Comunidad</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -53,7 +53,16 @@ class ComunidadesController extends Controller {
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
-
+        
+        DB::table('propietarios')->insert([
+            'id_user' => Auth::id(),
+            'id_comunidad' => $comunidad,
+            'nombre' => Auth::user()->name,
+            'email' => Auth::user()->email,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        
         return response()->json([
                     'message' => 'Comunidad creada',
                     'id' => $comunidad

@@ -49,39 +49,40 @@
         <div class="modal fade" id="modificar" tabindex="-1" role="dialog" aria-labelledby="modificarModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modificarModal" v-if="modalForm == 'create'">Insertar Propiedad</h5>
-                        <h5 class="modal-title" id="modificarModal" v-else>Modificar Propiedad</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="d-flex flex-row align-content-center mb-2">
-                            <label for="tipo" class="align-self-center">Tipo</label>
-                            <select id="tipo" v-model="modalTipo">
-                                <option disabled value="">Tipo</option>
-                                <option v-for="tipo in tipos" v-bind:value="tipo.id"> {{tipo.tipo}}</option>
-                            </select>
+                    <form autocomplete="off" v-on:submit.prevent="modalForm == 'create' ? createItem() : updateItem()">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modificarModal" v-if="modalForm == 'create'">Insertar Propiedad</h5>
+                            <h5 class="modal-title" id="modificarModal" v-else>Modificar Propiedad</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="d-flex flex-row mb-2">
-                            <label for="descripcion" class="align-self-center">Descripcion</label>
-                            <input id="descripcion" v-model="modalDesc" type="text"/>
+                        <div class="modal-body">
+                            <div class="d-flex flex-row align-content-center mb-2">
+                                <label for="tipo" class="align-self-center">Tipo</label>
+                                <select id="tipo" v-model="modalTipo" required>
+                                    <option disabled value="">Tipo</option>
+                                    <option v-for="tipo in tipos" v-bind:value="tipo.id"> {{tipo.tipo}}</option>
+                                </select>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <label for="descripcion" class="align-self-center">Descripcion</label>
+                                <input id="descripcion" v-model="modalDesc" type="text" required/>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <label for="coeficiente" class="align-self-center">Coeficiente</label>
+                                <input id="coeficiente" v-model="modalCoef" type="number" min="0" max="100" step="0.01" required/> %
+                            </div>
                         </div>
-                        <div class="d-flex flex-row mb-2">
-                            <label for="coeficiente" class="align-self-center">Coeficiente</label>
-                            <input id="coeficiente" v-model="modalCoef" type="number" min="0" max="100" step="0.01"/> %
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary" v-if="modalForm == 'create'">Insertar</button>
+                            <button type="submit" class="btn btn-primary" v-else>Actualizar</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" v-if="modalForm == 'create'" v-on:click="createItem">Insertar</button>
-                        <button type="button" class="btn btn-primary" v-else v-on:click="updateItem">Actualizar</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 

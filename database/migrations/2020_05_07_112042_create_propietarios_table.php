@@ -18,10 +18,10 @@ class CreatePropietariosTable extends Migration
             $table->foreignId('id_user')->nullable()->constrained('users');
             $table->foreignId('id_comunidad')->constrained('comunidades');
             $table->string('nombre');
-            $table->string('nif', 9);
-            $table->string('telefono', 15);
-            $table->string('email');
-            $table->string('iban', 24);
+            $table->string('nif', 9)->nullable();
+            $table->string('telefono', 15)->nullable();
+            $table->string('email')->nullable();
+            $table->string('iban', 43)->nullable();
             $table->timestamps();
         });
     }

@@ -49,43 +49,45 @@
         <div class="modal fade" id="modificar" tabindex="-1" role="dialog" aria-labelledby="modificarModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modificarModal" v-if="modalForm == 'create'">Insertar Propietario</h5>
-                        <h5 class="modal-title" id="modificarModal" v-else>Modificar Propietario</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="d-flex flex-row mb-2">
-                            <label for="nombre" class="align-self-center">Nombre</label>
-                            <input id="nombre" v-model="modalNombre" type="text"/>
+                    <form autocomplete="off" v-on:submit.prevent="modalForm == 'create' ? createItem() : updateItem()">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modificarModal" v-if="modalForm == 'create'">Insertar Propietario</h5>
+                            <h5 class="modal-title" id="modificarModal" v-else>Modificar Propietario</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="d-flex flex-row mb-2">
-                            <label for="email" class="align-self-center">Email</label>
-                            <input id="email" v-model="modalEmail" type="text"/>
+                        <div class="modal-body">
+                            <div class="d-flex flex-row mb-2">
+                                <label for="nombre" class="align-self-center">Nombre</label>
+                                <input id="nombre" v-model="modalNombre" type="text" required/>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <label for="email" class="align-self-center">Email</label>
+                                <input id="email" v-model="modalEmail" type="email"/>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <label for="telefono" class="align-self-center">Teléfono</label>
+                                <input id="telefono" v-model="modalTelf" type="tel" maxlength="15"/>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <label for="dni" class="align-self-center">DNI</label>
+                                <input id="dni" v-model="modalDNI" type="text" maxlength="9" pattern="[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]|[XYZ][0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKE]" title="Formato: 12345678A o X1234567A"/>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <label for="iban" class="align-self-center">IBAN</label>
+                                <input id="iban" v-model="modalIBAN" type="text" maxlength="43" pattern="^([A-Z]{2}[ \-]?[0-9]{2})(?=(?:[ \-]?[A-Z0-9]){9,30}$)((?:[ \-]?[A-Z0-9]{3,5}){2,7})([ \-]?[A-Z0-9]{1,3})?$"/>
+                            </div>
                         </div>
-                        <div class="d-flex flex-row mb-2">
-                            <label for="telefono" class="align-self-center">Teléfono</label>
-                            <input id="telefono" v-model="modalTelf" type="text"/>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" v-if="modalForm == 'create'">Insertar</button>
+                            <div v-else>
+                                <button type="button" class="btn btn-danger" v-on:click="deleteItem(modalId)">Elminar</button>
+                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                            </div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
-                        <div class="d-flex flex-row mb-2">
-                            <label for="dni" class="align-self-center">DNI</label>
-                            <input id="dni" v-model="modalDNI" type="text"/>
-                        </div>
-                        <div class="d-flex flex-row mb-2">
-                            <label for="iban" class="align-self-center">IBAN</label>
-                            <input id="iban" v-model="modalIBAN" type="text"/>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div v-if="modalForm == 'update'">
-                            <button type="button" class="btn btn-danger" v-on:click="deleteItem(modalId)">Elminar</button>
-                            <button type="button" class="btn btn-primary" v-on:click="updateItem">Actualizar</button>
-                        </div>
-                        <button type="button" class="btn btn-primary" v-else v-on:click="createItem">Insertar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -165,7 +167,7 @@
                             }
                         })
                         .then(response => {
-                            alert("Propitario modificada");
+                            alert("Propitario modificado");
                             window.location.reload();
                         })
                         .catch(error => {
