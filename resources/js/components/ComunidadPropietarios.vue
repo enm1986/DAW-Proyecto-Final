@@ -37,7 +37,7 @@
                         <button type="button" class="page-link" v-if="pagina != 1" @click="pagina--">&laquo;</button>
                     </li>
                     <li class="page-item">
-                        <button type="button" class="page-link" v-bind:class="{'bg-info text-light': pagina==npagina}" v-for="npagina in paginas.slice(pagina-2 > 0 ? pagina-2 : 0, pagina+1)" @click="pagina=npagina">{{npagina}}</button>
+                        <button type="button" class="page-link" v-bind:class="{'bg-info text-light': pagina==npagina}" v-for="npagina in paginas.slice(pagina-2 > 0 ? pagina-3 : 0, pagina+2)" @click="pagina=npagina">{{npagina}}</button>
                     </li>
                     <li class="page-item">
                         <button type="button" class="page-link" v-if="pagina < paginas.length" @click="pagina++">&raquo;</button>
@@ -234,8 +234,6 @@
                 }
             },
             paginar: function (items) {
-                let pagina = this.pagina;
-                let porPagina = this.porPagina;
                 let desde = (this.pagina * this.porPagina) - this.porPagina;
                 let hasta = (this.pagina * this.porPagina);
                 return items.slice(desde, hasta);

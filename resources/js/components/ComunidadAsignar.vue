@@ -24,11 +24,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="propiedad in propiedades" v-bind:key="propiedad.id">
+                    <tr v-for="propiedad in elementosMostrados" v-bind:key="propiedad.id">
                         <td>{{mostrarPropiedad(propiedad)}}</td>
                         <td>
-                            <div v-for="propietario in mostrarPropietarios(propiedad.id)" :key="propietario.id">
-                                <span class="m-1">{{propietario.nombre}}</span>
+                            <div class="p-1" v-for="propietario in mostrarPropietarios(propiedad.id)" :key="propietario.id">
+                                <span>{{propietario.nombre}}</span>
                             </div>
                         </td>
                         <td> 
@@ -39,6 +39,20 @@
                     </tr>
                 </tbody>
             </table>
+            <!--Paginador-->
+            <nav aria-label="Paginador asignaciones">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <button type="button" class="page-link" v-if="pagina != 1" @click="pagina--">&laquo;</button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link" v-bind:class="{'bg-info text-light': pagina==npagina}" v-for="npagina in paginas.slice(pagina-2 > 0 ? pagina-3 : 0, pagina+2)" @click="pagina=npagina">{{npagina}}</button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link" v-if="pagina < paginas.length" @click="pagina++">&raquo;</button>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </template>
@@ -54,7 +68,10 @@
                 tipos_prop: [],
                 asignaciones: [],
                 selectPropietarios: '',
-                selectPropiedades: ''
+                selectPropiedades: '',
+                pagina: 1,
+                porPagina: 10,
+                paginas: [],
             };
         },
         created() {
@@ -69,12 +86,12 @@
         },
         computed: {
             elementosMostrados: function () {
-                return this.paginar(this.asignaciones);
+                return this.paginar(this.propiedades);
             }
         },
         watch: {
-            asignaciones: function () {
-                this.setPaginador(this.asignaciones);
+            propiedades: function () {
+                this.setPaginador(this.propiedades);
             }
         },
         methods: {
@@ -175,8 +192,6 @@
                 }
             },
             paginar: function (items) {
-                let pagina = this.pagina;
-                let porPagina = this.porPagina;
                 let desde = (this.pagina * this.porPagina) - this.porPagina;
                 let hasta = (this.pagina * this.porPagina);
                 return items.slice(desde, hasta);
