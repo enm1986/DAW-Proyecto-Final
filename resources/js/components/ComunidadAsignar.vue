@@ -70,7 +70,7 @@
                 selectPropietarios: '',
                 selectPropiedades: '',
                 pagina: 1,
-                porPagina: 10,
+                porPagina: 7,
                 paginas: [],
             };
         },
