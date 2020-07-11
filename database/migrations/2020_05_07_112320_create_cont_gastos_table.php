@@ -15,12 +15,17 @@ class CreateContGastosTable extends Migration {
         Schema::create('cont_gastos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
-            $table->foreignId('id_propietario')->nullable()->constrained('propietarios');
+            $table->foreignId('id_proveedor')->nullable()->constrained('proveedores');
             $table->string('concepto');
-            $table->enum('tipo_cobro', ['cuota', 'ingreso', 'alquiler']);
-            $table->float('importe', 8, 2);
             $table->date('fecha_factura');
-            $table->date('fecha_cobro');
+            $table->float('importe', 8, 2);
+            $table->foreignId('id_forma_pago')->constrained('cont_formas_pago');
+            $table->string('Referencia');
+            $table->foreignId('id_cuenta')->nullable()->constrained('cont_cuentas');
+            $table->enum('tipo_gasto', ['ordinario', 'extraordinario']);
+            $table->foreignId('id_fondo')->constrained('cont_fondos');
+            $table->foreignId('id_propietario')->nullable()->constrained('propietarios');
+            $table->date('fecha_pago')->nullable();
             $table->timestamps();
         });
     }

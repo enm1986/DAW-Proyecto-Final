@@ -25,12 +25,11 @@ class ProveedorSeeder extends Seeder {
                 'telefono' => $faker->numerify($tlf),
                 'direccion' => $faker->address,
                 'iban' => $faker->iban('ES'),
-                'actividad' => null,
+                'actividad' => $nombre,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')];
             for ($comunidad = 1; $comunidad <= 2; $comunidad++) {
                 $data['id_comunidad'] = $comunidad;
-                $data['actividad'] = $faker->text(50);
                 DB::table('proveedores')->insert($data);
             }
         }
