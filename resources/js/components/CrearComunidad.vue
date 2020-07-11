@@ -17,6 +17,7 @@
                 <div class="tab-pane fade show active" id="nav-sol" role="tabpanel" aria-labelledby="nav-sol-tab">
                     <form autocomplete="off" v-on:submit.prevent="crearAcceso">
                         <div class="modal-body">
+                            <p>Introduzca el CIF de la comunidad a la que quiere acceder</p>
                             <div class="d-flex flex-row align-content-center mb-2">
                                 <label for="solcif" class="align-self-center">CIF</label>
                                 <input id="solcif" v-model="solcif" type="text" required pattern="H[0-9]{8}"/>
@@ -27,7 +28,6 @@
                             <button type="submit" class="btn btn-primary">Solicitar</button>
                         </div>
                     </form>
-
                 </div>
                 <div class="tab-pane fade" id="nav-crea" role="tabpanel" aria-labelledby="nav-crea-tab">
                     <form autocomplete="off" v-on:submit.prevent="crearComunidad">

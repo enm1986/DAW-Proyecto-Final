@@ -18,10 +18,11 @@ class CreateProveedoresTable extends Migration
             $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
             $table->string('nombre');
             $table->string('cif', 9);
-            $table->string('email');
-            $table->string('telefono',15);
-            $table->string('iban', 24);
-            $table->text('descripcion');
+            $table->string('email')->nullable();
+            $table->string('telefono',15)->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('iban', 43)->nullable();
+            $table->string('actividad')->nullable();
             $table->timestamps();
         });
     }

@@ -2,14 +2,36 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card mb-2" v-for="comunidad in comunidades" v-bind:key="comunidad.id">
-                    <div class="card-header">
-                        {{ comunidad.nombre }}
-                        <span v-if="comunidad.tipo_acceso == 'admin'" class="badge badge-warning">Administrador</span>
-                    </div>
-
-                    <div class="card-body">
-                        <a class="btn btn-secondary btn-block" v-bind:href="'/comunidad/' + comunidad.id" role="button">Entrar</a>
+                <div v-if="comunidades.length > 4">
+                    <table class="table table-sm table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Comunidad</th>
+                                <th scope="col" class="d-none d-md-table-cell">Dirección</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="comunidad in comunidades" v-bind:key="comunidad.id">
+                                <td>{{ comunidad.nombre }}</td>
+                                <td class="d-none d-md-table-cell">{{ comunidad.direccion }}</td>
+                                <td>
+                                    <a class="btn btn-secondary btn-sm" v-bind:href="'/comunidad/' + comunidad.id" role="button">Entrar</a>
+                                    <span v-if="comunidad.tipo_acceso == 'admin'" class="badge badge-warning">Administrador</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div v-else>
+                    <div class="card mb-2" v-for="comunidad in comunidades" v-bind:key="comunidad.id">
+                        <div class="card-header">
+                            {{ comunidad.nombre }}
+                            <span v-if="comunidad.tipo_acceso == 'admin'" class="badge badge-warning">Administrador</span>
+                        </div>
+                        <div class="card-body">
+                            <a class="btn btn-secondary btn-block" v-bind:href="'/comunidad/' + comunidad.id" role="button">Entrar</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -45,7 +67,13 @@
 
     }
 </script>
-<!--
+
 <style scoped>
+    table{
+        font-size: 0.9em;
+        text-align: center;
+    }
+    td {
+        vertical-align: middle;
+    }
 </style>
--->

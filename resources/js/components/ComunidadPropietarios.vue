@@ -2,7 +2,7 @@
     <div class="container p-0">
         <div class="row justify-content-center">
             <div id="crear" class="d-flex flex-wrap justify-content-between align-items-center my-2">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modificar" v-on:click="prepareCreate()">Insertar Propietario</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modificar" v-on:click="prepareCreate()">Nuevo Propietario</button>
             </div>
 
             <table class="table table-sm table-striped table-bordered">
@@ -51,7 +51,7 @@
                 <div class="modal-content">
                     <form autocomplete="off" v-on:submit.prevent="modalForm == 'create' ? createItem() : updateItem()">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modificarModal" v-if="modalForm == 'create'">Insertar Propietario</h5>
+                            <h5 class="modal-title" id="modificarModal" v-if="modalForm == 'create'">Nuevo Propietario</h5>
                             <h5 class="modal-title" id="modificarModal" v-else>Modificar Propietario</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -82,7 +82,7 @@
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary" v-if="modalForm == 'create'">Insertar</button>
                             <div v-else>
-                                <button type="button" class="btn btn-danger" v-on:click="deleteItem(modalId)">Elminar</button>
+                                <button type="button" class="btn btn-danger" v-on:click="deleteItem(modalId)">Eliminar</button>
                                 <button type="submit" class="btn btn-primary">Actualizar</button>
                             </div>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -91,11 +91,11 @@
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
 <script>
+    import {eventBus} from "../app.js";
     export default {
         props: ['comunidad_id'],
         data: function () {
@@ -116,11 +116,10 @@
             };
         },
         created() {
-            this.getPropietarios();
+            this.getPropietarios().then(data => (this.propietarios = data));
             console.log('Component created');
         },
         mounted() {
-            console.log(this.propietarios);
             console.log('Component mounted');
         },
         computed: {
@@ -135,13 +134,15 @@
         },
         methods: {
             getPropietarios: function () {
-                axios.get('/api/comunidad/' + this.comunidad_id + '/propietarios',
+                return axios.get('/api/comunidad/' + this.comunidad_id + '/propietarios',
                         {//config
                             headers: {
                                 'Authorization': this.bearer
                             }
                         })
-                        .then(response => (this.propietarios = response.data));
+                        .then(response => {
+                            return response.data;
+                        });
             },
             prepareUpdate: function (propietario) {
                 this.modalForm = 'update';

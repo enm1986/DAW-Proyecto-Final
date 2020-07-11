@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder {
             PropiedadSeeder::class,
             PropietarioSeeder::class,
             PropPropSeeder::class,
-            //ProveedorSeeder::class,
+            ProveedorSeeder::class,
             //ContCuentas::class,
             //ContPresupuestos::class,
             //ContPagosSeeder::class,

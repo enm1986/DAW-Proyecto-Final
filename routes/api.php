@@ -46,6 +46,11 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::get('comunidad/{id}/asignar', 'API\PropPropController@index');
         Route::post('comunidad/{id}/asignar', 'API\PropPropController@create');
         Route::delete('comunidad/{id}/asignar', 'API\PropPropController@delete');
+        
+        Route::get('comunidad/{id}/proveedores', 'API\ProveedoresController@index');
+        Route::post('comunidad/{id}/proveedores', 'API\ProveedoresController@create');
+        Route::put('comunidad/{id}/proveedores/{proveedor}', 'API\ProveedoresController@update');
+        Route::delete('comunidad/{id}/proveedores/{proveedor}', 'API\ProveedoresController@delete');
     });
 
 

@@ -8,6 +8,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 Vue.use(require('vue-cookies'));
+export const eventBus = new Vue();
 
 /**
  * The following block of code may be used to automatically register your
@@ -28,6 +29,7 @@ Vue.component('comunidad-datos', require('./components/ComunidadDatos.vue').defa
 Vue.component('comunidad-propiedades', require('./components/ComunidadPropiedades.vue').default);
 Vue.component('comunidad-propietarios', require('./components/ComunidadPropietarios.vue').default);
 Vue.component('comunidad-asignar', require('./components/ComunidadAsignar.vue').default);
+Vue.component('comunidad-proveedores', require('./components/ComunidadProveedores.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -38,3 +40,4 @@ Vue.component('comunidad-asignar', require('./components/ComunidadAsignar.vue').
 const app = new Vue({
     el: '#app',
 });
+

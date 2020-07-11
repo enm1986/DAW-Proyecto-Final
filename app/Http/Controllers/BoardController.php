@@ -46,6 +46,26 @@ class BoardController extends Controller {
         return view('admin.asignar', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
     }
 
+    public function proveedores(int $id) {
+        return view('admin.proveedores', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
+    }
+    
+    public function cuentas(int $id) {
+        return view('admin.cuentas', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
+    }
+    
+    public function gastos(int $id) {
+        return view('admin.gastos', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
+    }
+    
+    public function ingresos(int $id) {
+        return view('admin.ingresos', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
+    }
+    
+    public function cuotas(int $id) {
+        return view('admin.cuotas', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
+    }
+    
     private function getComunidad($id) {
         $comunidad = DB::table('comunidades')
                 ->where('id', '=', $id)

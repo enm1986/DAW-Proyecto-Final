@@ -1,22 +1,24 @@
-<template>
++<template>
     <div class="container p-0">
         <div>
-            <div class="d-flex flex-row mb-2">
-                <label for="nombre" class="align-self-center">Nombre</label>
-                <input id="nombre" v-model="nombre" type="text"/>
-            </div>
-            <div class="d-flex flex-row mb-2">
-                <label for="cif" class="align-self-center">CIF</label>
-                <input id="cif" v-model="cif" type="text"/>
-            </div>
-            <div class="d-flex flex-row mb-2">
-                <label for="direccion" class="align-self-center">Dirección</label>
-                <input id="direccion" v-model="direccion" type="text"/>
-            </div>
-            <div class="d-flex flex-wrap justify-content-between">
-                <button type="button" class="btn btn-primary mb-2" v-on:click="updateComunidad">Actualizar Datos</button>
-                <button type="button" class="btn btn-danger mb-2" v-on:click="deleteComunidad">Eliminar Comunidad</button>
-            </div>
+            <form autocomplete="off" v-on:submit.prevent="updateComunidad">
+                <div class="d-flex flex-row mb-2">
+                    <label for="nombre" class="align-self-center">Nombre</label>
+                    <input id="nombre" v-model="nombre" type="text" required/>
+                </div>
+                <div class="d-flex flex-row mb-2">
+                    <label for="cif" class="align-self-center">CIF</label>
+                    <input id="cif" v-model="cif" type="text" required pattern="H[0-9]{8}"/>
+                </div>
+                <div class="d-flex flex-row mb-2">
+                    <label for="direccion" class="align-self-center">Dirección</label>
+                    <input id="direccion" v-model="direccion" type="text" required/>
+                </div>
+                <div class="d-flex flex-wrap justify-content-between">
+                    <button type="submit" class="btn btn-primary mb-2">Actualizar Datos</button>
+                    <button type="button" class="btn btn-danger mb-2" v-on:click="deleteComunidad">Eliminar Comunidad</button>
+                </div>
+            </form>
         </div>
     </div>
 </template>

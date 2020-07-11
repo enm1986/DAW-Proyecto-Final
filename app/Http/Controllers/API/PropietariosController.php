@@ -55,7 +55,6 @@ class PropietariosController extends Controller {
         ]);
     }
 
-    //Revisar
     public function delete(int $id, int $propietario) {
 
         $deleted = DB::table('propietarios')

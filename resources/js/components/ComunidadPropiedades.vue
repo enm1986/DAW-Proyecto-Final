@@ -2,7 +2,7 @@
     <div class="container p-0">
         <div class="row justify-content-center">
             <div id="crear" class="d-flex flex-wrap justify-content-between align-items-center my-2">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modificar" v-on:click="prepareCreate()">Insertar Propiedad</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modificar" v-on:click="prepareCreate()">Nueva Propiedad</button>
                 <div>
                     <span>Coeficiente Total: </span>
                     <span v-bind:class="{'text-success': isCoefMax(), 'text-danger': !isCoefMax()}">{{ coefTotal }} %</span>       
@@ -51,7 +51,7 @@
                 <div class="modal-content">
                     <form autocomplete="off" v-on:submit.prevent="modalForm == 'create' ? createItem() : updateItem()">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modificarModal" v-if="modalForm == 'create'">Insertar Propiedad</h5>
+                            <h5 class="modal-title" id="modificarModal" v-if="modalForm == 'create'">Nueva Propiedad</h5>
                             <h5 class="modal-title" id="modificarModal" v-else>Modificar Propiedad</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -75,9 +75,12 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-primary" v-if="modalForm == 'create'">Insertar</button>
-                            <button type="submit" class="btn btn-primary" v-else>Actualizar</button>
+                            <div v-else>
+                                <button type="button" class="btn btn-danger" v-on:click="deleteItem(modalId)">Eliminar</button>
+                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                            </div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                     </form>
                 </div>
@@ -107,7 +110,7 @@
         },
         created() {
             this.getTipos();
-            this.getPropiedades();
+            this.getPropiedades().then(data => (this.propiedades = data));
             console.log('Component created');
         },
         mounted() {
@@ -139,13 +142,14 @@
                 }).then(response => (this.tipos = response.data));
             },
             getPropiedades: function () {
-                axios.get('/api/comunidad/' + this.comunidad_id + '/propiedades',
+                return axios.get('/api/comunidad/' + this.comunidad_id + '/propiedades',
                         {//config
                             headers: {
                                 'Authorization': this.bearer
                             }
                         })
-                        .then(response => (this.propiedades = response.data));
+                        .then(response => {return response.data;});
+                        //.then(response => (this.propiedades = response.data));
             },
             prepareUpdate: function (propiedad) {
                 this.modalForm = 'update';

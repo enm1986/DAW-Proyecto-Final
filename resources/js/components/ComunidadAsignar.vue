@@ -58,6 +58,7 @@
 </template>
 
 <script>
+    import {eventBus} from "../app.js";
     export default {
         props: ['comunidad_id'],
         data: function () {
@@ -163,13 +164,12 @@
                             })
                             .then(response => {
                                 alert("Asignación eliminada");
-                                //console.log(response);
+                                window.location.reload();
                             })
                             .catch(error => {
                                 alert("No ha sido posible eliminar la asignación");
                                 console.log(error.response);
                             });
-                    window.location.reload();
                 }
             },
             mostrarPropiedad: function (propiedad) {
@@ -221,5 +221,8 @@
     }
     td {
         vertical-align: middle;
+    }
+    option {
+        font-size: 0.8em;
     }
 </style>
