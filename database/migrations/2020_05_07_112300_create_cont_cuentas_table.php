@@ -15,9 +15,12 @@ class CreateContCuentasTable extends Migration
     {
         Schema::create('cont_cuentas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
+            $table->foreignId('id_fondo')->constrained('cont_fondos');
             $table->string('banco', 100);
-            $table->string('iban', 24);
-            $table->float('saldo_inicial', 18, 2);
+            $table->string('iban', 45);
+            $table->float('saldo_inicial', 18, 2)->default(0);
+            $table->date('fecha_saldo_ini');
             $table->float('saldo_actual', 18, 2);
             $table->timestamps();
         });

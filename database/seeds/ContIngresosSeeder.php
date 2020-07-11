@@ -28,7 +28,7 @@ class ContCobrosSeeder extends Seeder {
             $fecha2 = new DateTime();
 
             for ($i = 1; $i <= date('m'); $i += $periodo) {
-                DB::table('cont_cobros')->insert([
+                DB::table('cont_ingresos')->insert([
                     'id_comunidad' => $comunidad,
                     'id_propietario' => $propietario->id,
                     'concepto' => 'Cuota mes ' . $i,

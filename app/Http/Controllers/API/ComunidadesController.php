@@ -53,7 +53,7 @@ class ComunidadesController extends Controller {
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
-        
+
         DB::table('propietarios')->insert([
             'id_user' => Auth::id(),
             'id_comunidad' => $comunidad,
@@ -62,7 +62,18 @@ class ComunidadesController extends Controller {
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
-        
+
+        $fondos = ['Fondo Ordinario', 'Fondo Extraordinario', 'Fondo Reserva'];
+        foreach ($fondos as $fondo) {
+            DB::table('cont_fondos')->insert([
+                'id_comunidad' => $comunidad,
+                'nombre' => $fondo,
+                'descripcion' => $fondo,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+        }
+
         return response()->json([
                     'message' => 'Comunidad creada',
                     'id' => $comunidad

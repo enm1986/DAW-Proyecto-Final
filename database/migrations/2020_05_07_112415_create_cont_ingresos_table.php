@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContPagosTable extends Migration {
+class CreateContIngresosTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateContPagosTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('cont_pagos', function (Blueprint $table) {
+        Schema::create('cont_ingresos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
             $table->foreignId('id_proveedor')->nullable()->constrained('proveedores');

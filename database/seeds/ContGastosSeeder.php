@@ -28,7 +28,7 @@ class ContPagosSeeder extends Seeder {
         $fecha2 = new DateTime();
 
         //Facturas Anuales
-        DB::table('cont_pagos')->insert([
+        DB::table('cont_gastos')->insert([
             ['id_comunidad' => 1,
                 'id_proveedor' => 2,
                 'concepto' => 'Seguro Resp. Civil',
