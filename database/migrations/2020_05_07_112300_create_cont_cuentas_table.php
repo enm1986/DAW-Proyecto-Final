@@ -21,7 +21,6 @@ class CreateContCuentasTable extends Migration
             $table->string('iban', 45);
             $table->float('saldo_inicial', 18, 2)->default(0);
             $table->date('fecha_saldo_ini');
-            $table->float('saldo_actual', 18, 2);
             $table->timestamps();
         });
     }

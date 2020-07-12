@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class ProveedoresController extends Controller {
 
     public function index($id) {
-        $provedores = DB::table('proveedores')
+        $proveedores = DB::table('proveedores')
                 ->where([
                     ['id_comunidad', '=', $id]
                 ])

@@ -26,6 +26,7 @@
             </div>
             <div class="card-body">
                 <ul>
+                    <li><a href="/comunidad/{{ $comunidad->id }}/fondos">Fondos</a></li>
                     <li><a href="/comunidad/{{ $comunidad->id }}/cuentas">Bancos y cajas</a></li>
                     <li><a href="/comunidad/{{ $comunidad->id }}/gastos">Gastos</a></li>
                     <li><a href="/comunidad/{{ $comunidad->id }}/cuotas">Cuotas</a></li>

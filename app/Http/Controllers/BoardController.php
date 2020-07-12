@@ -50,6 +50,10 @@ class BoardController extends Controller {
         return view('admin.proveedores', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
     }
     
+    public function fondos(int $id) {
+        return view('admin.fondos', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
+    }
+    
     public function cuentas(int $id) {
         return view('admin.cuentas', ['comunidad' => $this->getComunidad($id), 'acceso' => 'admin']);
     }

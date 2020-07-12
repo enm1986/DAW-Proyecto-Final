@@ -30,6 +30,9 @@ Vue.component('comunidad-propiedades', require('./components/ComunidadPropiedade
 Vue.component('comunidad-propietarios', require('./components/ComunidadPropietarios.vue').default);
 Vue.component('comunidad-asignar', require('./components/ComunidadAsignar.vue').default);
 Vue.component('comunidad-proveedores', require('./components/ComunidadProveedores.vue').default);
+Vue.component('contabilidad-fondos', require('./components/ContFondos.vue').default);
+Vue.component('contabilidad-cuentas', require('./components/ContCuentas.vue').default);
+Vue.component('contabilidad-gastos', require('./components/ContGastos.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

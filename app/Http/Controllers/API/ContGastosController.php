@@ -11,10 +11,19 @@ class ContGastosController extends Controller {
 
     public function index($id) {
         $gastos = DB::table('cont_gastos')
+                ->join('proveedores', 'cont_gastos.id_proveedor', '=', 'proveedores.id', 'left outer')
+                ->join('cont_cuentas', 'cont_gastos.id_cuenta', '=', 'cont_cuentas.id')
+                ->join('cont_fondos', 'cont_gastos.id_fondo', '=', 'cont_fondos.id')
+                ->join('propiedades', 'cont_gastos.id_propiedad', '=', 'propiedades.id', 'left outer')
+                ->select('cont_gastos.id', 'cont_gastos.id_proveedor', 'proveedores.nombre as proveedor',
+                        'cont_gastos.concepto', 'cont_gastos.fecha_factura', 'cont_gastos.importe',
+                        'cont_gastos.forma_pago', 'cont_gastos.referencia', 'cont_gastos.tipo_gasto',
+                        'cont_gastos.id_cuenta', 'cont_cuentas.banco', 'cont_gastos.id_fondo', 'cont_fondos.nombre as fondo',
+                        'cont_gastos.id_propiedad', 'propiedades.descripcion as propiedad', 'cont_gastos.fecha_pago')
                 ->where([
-                    ['id_comunidad', '=', $id]
+                    ['cont_gastos.id_comunidad', '=', $id]
                 ])
-                ->orderByDesc('fecha_factura')
+                ->orderByDesc('cont_gastos.fecha_factura')
                 ->get();
         return $gastos;
     }
@@ -28,9 +37,10 @@ class ContGastosController extends Controller {
             'importe' => $request->input('importe'),
             'referencia' => $request->input('referencia'),
             'tipo_gasto' => $request->input('tipo_gasto'),
+            'forma_pago' => $request->input('forma_pago'),
             'id_cuenta' => $request->input('id_cuenta'),
             'id_fondo' => $request->input('id_fondo'),
-            'id_propietario' => $request->input('id_propietario'),
+            'id_propiedad' => $request->input('id_propiedad'),
             'fecha_pago' => $request->input('fecha_pago'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
@@ -52,9 +62,10 @@ class ContGastosController extends Controller {
             'importe' => $request->input('importe'),
             'referencia' => $request->input('referencia'),
             'tipo_gasto' => $request->input('tipo_gasto'),
+            'forma_pago' => $request->input('forma_pago'),
             'id_cuenta' => $request->input('id_cuenta'),
             'id_fondo' => $request->input('id_fondo'),
-            'id_propietario' => $request->input('id_propietario'),
+            'id_propiedad' => $request->input('id_propiedad'),
             'fecha_pago' => $request->input('fecha_pago'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);

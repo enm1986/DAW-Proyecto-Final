@@ -81,11 +81,9 @@
                             .then(response => {
                                 alert("Comunidad eliminada");
                                 window.location = '/home';
-                                //console.log(response);
                             })
                             .catch(error => {
                                 alert("No ha sido posible eliminar la comunidad");
-
                                 console.log(error.response);
                             });
                 }

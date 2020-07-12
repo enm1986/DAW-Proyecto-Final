@@ -189,7 +189,6 @@
                         })
                         .catch(error => {
                             alert("Imposible modificar proveedor");
-                            window.location.reload();
                             console.log(error.response);
                         });
             },
@@ -242,7 +241,6 @@
                         })
                         .catch(error => {
                             alert("Imposible insertar proveedor");
-                            window.location.reload();
                             console.log(error.response);
                         });
             },

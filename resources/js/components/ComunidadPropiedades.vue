@@ -69,8 +69,8 @@
                                 <label for="descripcion" class="align-self-center">Descripcion</label>
                                 <input id="descripcion" v-model="modalDesc" type="text" required/>
                             </div>
-                            <div class="d-flex flex-row mb-2">
-                                <label for="coeficiente" class="align-self-center">Coeficiente</label>
+                            <div class="d-flex flex-row mb-2 align-items-center">
+                                <label for="coeficiente">Coeficiente</label>
                                 <input id="coeficiente" v-model="modalCoef" type="number" min="0" max="100" step="0.01" required/> %
                             </div>
                         </div>
@@ -148,8 +148,10 @@
                                 'Authorization': this.bearer
                             }
                         })
-                        .then(response => {return response.data;});
-                        //.then(response => (this.propiedades = response.data));
+                        .then(response => {
+                            return response.data;
+                        });
+                //.then(response => (this.propiedades = response.data));
             },
             prepareUpdate: function (propiedad) {
                 this.modalForm = 'update';
@@ -173,13 +175,12 @@
                             })
                             .then(response => {
                                 alert("Propiedad modificada");
+                                window.location.reload();
                             })
                             .catch(error => {
                                 alert("Imposible modificar la propiedad");
-                                window.location.reload();
                                 console.log(error.response);
                             });
-                    window.location.reload();
                 } else {
                     alert('No se debe superar el 100% de Coeficiente Total');
                 }
@@ -195,7 +196,6 @@
                             .then(response => {
                                 alert("Propiedad eliminada");
                                 window.location.reload();
-                                //console.log(response);
                             })
                             .catch(error => {
                                 alert("No ha sido posible eliminar la propiedad");
@@ -229,7 +229,6 @@
                             })
                             .catch(error => {
                                 alert("Imposible insertar la propiedad");
-                                window.location.reload();
                                 console.log(error.response);
                             });
                 } else {

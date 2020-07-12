@@ -173,7 +173,6 @@
                         })
                         .catch(error => {
                             alert("Imposible modificar propietario");
-                            window.location.reload();
                             console.log(error.response);
                         });
             },
@@ -224,7 +223,6 @@
                         })
                         .catch(error => {
                             alert("Imposible insertar propietario");
-                            window.location.reload();
                             console.log(error.response);
                         });
             },
