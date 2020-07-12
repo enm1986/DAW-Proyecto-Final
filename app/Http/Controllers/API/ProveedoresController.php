@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\DB;
 class ProveedoresController extends Controller {
 
     public function index($id) {
-        $propietarios = DB::table('proveedores')
+        $provedores = DB::table('proveedores')
                 ->where([
                     ['id_comunidad', '=', $id]
                 ])
                 ->orderBy('nombre')
                 ->get();
-        return $propietarios;
+        return $proveedores;
     }
 
     public function create(Request $request, $id) {
@@ -58,7 +58,7 @@ class ProveedoresController extends Controller {
         ]);
     }
 
-    public function delete(int $id, int $propietario) {
+    public function delete(int $id, int $proveedor) {
 
         $deleted = DB::table('proveedores')
                 ->where('id', $proveedor)

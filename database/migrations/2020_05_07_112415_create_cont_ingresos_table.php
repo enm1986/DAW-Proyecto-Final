@@ -21,7 +21,7 @@ class CreateContIngresosTable extends Migration {
             $table->string('concepto');
             $table->float('importe', 8, 2);
             $table->foreignId('id_forma_pago')->constrained('cont_formas_pago');
-            $table->string('Referencia')->nullable();
+            $table->string('referencia')->nullable();
             $table->date('fecha_ingreso');
             $table->foreignId('id_cuenta')->constrained('cont_cuentas');
             $table->foreignId('id_fondo')->constrained('cont_fondos');

@@ -20,7 +20,7 @@ class CreateContGastosTable extends Migration {
             $table->date('fecha_factura');
             $table->float('importe', 8, 2);
             $table->foreignId('id_forma_pago')->constrained('cont_formas_pago');
-            $table->string('Referencia');
+            $table->string('referencia');
             $table->foreignId('id_cuenta')->nullable()->constrained('cont_cuentas');
             $table->enum('tipo_gasto', ['ordinario', 'extraordinario']);
             $table->foreignId('id_fondo')->constrained('cont_fondos');
