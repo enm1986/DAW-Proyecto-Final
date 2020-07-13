@@ -9,30 +9,30 @@
                     <thead>
                         <tr>
                             <th scope="col">Fecha</th>
-                            <th scope="col">Proveedor</th>
+                            <th scope="col" class="d-none d-lg-table-cell">Proveedor</th>
                             <th scope="col">Concepto</th>
                             <th scope="col">Importe</th>
-                            <th scope="col">Cuenta</th>
-                            <th scope="col">Referencia</th>
+                            <th scope="col" class="d-none d-md-table-cell">Cuenta</th>
+                            <th scope="col" class="d-none d-lg-table-cell">Referencia</th>
                             <th scope="col">Tipo de gasto</th>
-                            <th scope="col">F. de pago</th>
-                            <th scope="col">Fondo</th>
-                            <th scope="col">Propiedad</th>
+                            <th scope="col" class="d-none d-lg-table-cell">F. de pago</th>
+                            <th scope="col" class="d-none d-lg-table-cell">Fondo</th>
+                            <th scope="col" class="d-none d-md-table-cell">Propiedad</th>
                             <th scope="col">Pagado</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="gasto in gastos" v-bind:key="gasto.id">
                             <td><a data-toggle="modal" data-target="#modal" v-on:click="prepareUpdate(gasto)">{{ gasto.fecha_factura }}</a></td>
-                            <td>{{ gasto.proveedor }}</td>
+                            <td class="d-none d-lg-table-cell">{{ gasto.proveedor }}</td>
                             <td>{{ gasto.concepto }}</td>
-                            <td>{{ gasto.importe }}</td>
-                            <td>{{ gasto.banco }}</td>
-                            <td>{{ gasto.referencia }}</td>
+                            <td>{{ gasto.importe }}€</td>
+                            <td class="d-none d-md-table-cell">{{ gasto.banco }}</td>
+                            <td class="d-none d-lg-table-cell">{{ gasto.referencia }}</td>
                             <td>{{ gasto.tipo_gasto }}</td>
-                            <td>{{ gasto.forma_pago }}</td>
-                            <td>{{ gasto.fondo }}</td>
-                            <td>{{ gasto.propiedad }}</td>
+                            <td class="d-none d-lg-table-cell">{{ gasto.forma_pago }}</td>
+                            <td class="d-none d-lg-table-cell">{{ gasto.fondo }}</td>
+                            <td class="d-none d-md-table-cell">{{ gasto.propiedad }}</td>
                             <td>{{ gasto.fecha_pago }}</td>
                         </tr>
                     </tbody>

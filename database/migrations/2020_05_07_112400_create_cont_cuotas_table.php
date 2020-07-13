@@ -15,7 +15,6 @@ class CreateContCuotasTable extends Migration {
         Schema::create('cont_cuotas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
-            $table->foreignId('id_propietario')->constrained('propietarios');
             $table->foreignId('id_propiedad')->constrained('propiedades');
             $table->string('concepto');
             $table->date('fecha_cuota');

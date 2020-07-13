@@ -18,7 +18,7 @@
                         <tr v-for="fondo in fondos" v-bind:key="fondo.id">
                             <td>{{ fondo.nombre }}</td>
                             <td>{{ fondo.descripcion }}</td>
-                            <td>{{ fondo.ingresos - fondo.gastos }}</td>
+                            <td>{{ fondo.ingresos - fondo.gastos }}€</td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal" v-on:click="prepareUpdate(fondo)"><i class="far fa-edit"></i></button>
                                 <button type="button" class="btn btn-info btn-sm" v-on:click="estadoFondo(fondo)"><i class="fas fa-eye"></i></button>

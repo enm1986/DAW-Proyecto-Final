@@ -14,7 +14,7 @@
                 </ol>
             </nav>
 
-            <comunidad-proveedores :comunidad_id="'{{ $comunidad->id }}'"></comunidad-proveedores>                 
+            <contabilidad-ingresos :comunidad_id="'{{ $comunidad->id }}'"></contabilidad-ingresos>             
         </div>
     </div>
 </div>

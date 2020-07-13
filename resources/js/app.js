@@ -33,6 +33,8 @@ Vue.component('comunidad-proveedores', require('./components/ComunidadProveedore
 Vue.component('contabilidad-fondos', require('./components/ContFondos.vue').default);
 Vue.component('contabilidad-cuentas', require('./components/ContCuentas.vue').default);
 Vue.component('contabilidad-gastos', require('./components/ContGastos.vue').default);
+Vue.component('contabilidad-cuotas', require('./components/ContCuotas.vue').default);
+//Vue.component('contabilidad-ingresos', require('./components/ContIngresos.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

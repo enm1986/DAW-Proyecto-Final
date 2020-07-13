@@ -9,18 +9,18 @@
                     <thead>
                         <tr>
                             <th scope="col">Banco</th>
-                            <th scope="col">IBAN</th>
+                            <th scope="col" class="d-none d-lg-table-cell">IBAN</th>
                             <th scope="col">Saldo</th>
-                            <th scope="col">Fondo</th>
+                            <th scope="col" class="d-none d-md-table-cell">Fondo</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="cuenta in cuentas" v-bind:key="cuenta.id">
                             <td>{{ cuenta.banco }}</td>
-                            <td>{{ cuenta.iban }}</td>
-                            <td>{{ cuenta.ingresos - cuenta.gastos }}</td>
-                            <td>{{ cuenta.nombre }}</td>
+                            <td class="d-none d-lg-table-cell">{{ cuenta.iban }}</td>
+                            <td>{{ cuenta.ingresos - cuenta.gastos }}€</td>
+                            <td class="d-none d-md-table-cell">{{ cuenta.nombre }}</td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal" v-on:click="prepareUpdate(cuenta)"><i class="far fa-edit"></i></button>
                                 <button type="button" class="btn btn-info btn-sm" v-on:click="estadoCuenta(cuenta)"><i class="fas fa-eye"></i></button>
