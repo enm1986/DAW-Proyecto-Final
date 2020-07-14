@@ -41,11 +41,14 @@
             }
 
             .content {
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
                 text-align: center;
             }
 
             .title {
-                font-size: 84px;
+                font-size: 8vw;
             }
 
             .links > a {
@@ -61,35 +64,40 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .col{
+                display: grid;
+            }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Acceder</a>
+            <div class="top-right links">
+                @auth
+                <a href="{{ url('/home') }}">Home</a>
+                @else
+                <a href="{{ route('login') }}">Acceder</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Registro</a>
-                        @endif
-                    @endauth
-                </div>
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}">Registro</a>
+                @endif
+                @endauth
+            </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Administrador de Comunidades
-                </div>
+            <div class="row content">
+                <div class="col">
+                    <div class="title m-b-md">
+                        Administrador de Comunidades
+                    </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="/adminer.php">Adminer</a>
-                    <a href="https://es.vuejs.org/">Vue.js</a>
-                    <a href="https://github.com/enm1986/DAW-Proyecto-Final">GitHub</a>
+                    <div class="links">
+                        <a href="https://laravel.com/docs">Docs</a>
+                        <a href="https://laracasts.com">Laracasts</a>
+                        <a href="/adminer.php">Adminer</a>
+                        <a href="https://es.vuejs.org/">Vue.js</a>
+                        <a href="https://github.com/enm1986/DAW-Proyecto-Final">GitHub</a>
+                    </div>
                 </div>
             </div>
         </div>
