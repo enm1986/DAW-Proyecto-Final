@@ -15,7 +15,6 @@ class CreateContIngresosTable extends Migration {
         Schema::create('cont_ingresos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_comunidad')->constrained('comunidades')->onDelete('cascade');
-            $table->foreignId('id_propietario')->nullable()->constrained('propietarios');
             $table->foreignId('id_propiedad')->nullable()->constrained('propiedades');
             $table->foreignId('id_cuota')->nullable()->constrained('cont_cuotas');
             $table->string('concepto');

@@ -26,6 +26,11 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('comunidad', 'API\ComunidadesController@create');
     Route::post('acceso', 'API\LoginAccesoController@create');
 
+    Route::get('comunidad/{id}/fondos', 'API\ContFondosController@index');
+    Route::get('comunidad/{id}/cuentas', 'API\ContCuentasController@index');
+
+    Route::get('comunidad/{id}/ingresosprop', 'API\ContIngresosController@indexPropietario');
+    Route::get('comunidad/{id}/cuotasprop', 'API\ContCuotasController@indexPropietario');
 
     //ADMIN
     Route::group(['middleware' => 'checkAdmin'], function() {
@@ -52,12 +57,10 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::put('comunidad/{id}/proveedores/{proveedor}', 'API\ProveedoresController@update');
         Route::delete('comunidad/{id}/proveedores/{proveedor}', 'API\ProveedoresController@delete');
 
-        Route::get('comunidad/{id}/fondos', 'API\ContFondosController@index');
         Route::post('comunidad/{id}/fondos', 'API\ContFondosController@create');
         Route::put('comunidad/{id}/fondos/{fondo}', 'API\ContFondosController@update');
         Route::delete('comunidad/{id}/fondos/{fondo}', 'API\ContFondosController@delete');
 
-        Route::get('comunidad/{id}/cuentas', 'API\ContCuentasController@index');
         Route::post('comunidad/{id}/cuentas', 'API\ContCuentasController@create');
         Route::put('comunidad/{id}/cuentas/{cuenta}', 'API\ContCuentasController@update');
         Route::delete('comunidad/{id}/cuentas/{cuenta}', 'API\ContCuentasController@delete');

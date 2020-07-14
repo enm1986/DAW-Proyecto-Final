@@ -10,12 +10,18 @@ class ContFondosController extends Controller {
 
     public function index($id) {
 
-        $fondos = DB::select('select F.id, F.nombre, F.descripcion, sum(I.importe) as ingresos, sum(G.importe) as gastos 
-            from cont_fondos F
-            left join cont_cuentas C on C.id_fondo = F.id
-            left join cont_ingresos I on C.id = I.id_cuenta
-            left join cont_gastos G on C.id = G.id_cuenta
-            where F.id_comunidad = '. $id . 'group by F.id, F.nombre order by F.nombre');
+        $fondos = DB::select('select id, nombre, descripcion, sum(ingresos) as ingresos, sum(gastos) as gastos
+            from
+            ((select F.id, F.nombre, F.descripcion, I.importe as ingresos, null as gastos 
+                from cont_fondos F
+                left outer join cont_ingresos I on F.id = I.id_fondo 
+                where F.id_comunidad ='.$id.')
+                union all
+            (select F.id, F.nombre, F.descripcion, null as ingresos, G.importe as gastos 
+                from cont_fondos F
+                left outer join cont_gastos G on F.id = G.id_fondo
+                where F.id_comunidad ='.$id.')) as cuentas
+            group by id, nombre, descripcion');
 
         /*
           $fondos = DB::table('cont_fondos')

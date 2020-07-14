@@ -79,7 +79,7 @@
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <label for="dni" class="align-self-center">CIF</label>
-                                <input id="dni" v-model="modalNIF" type="text" maxlength="9" pattern="[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]|[XYZ][0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKE]|[ABCDEFGHJKLMNPQRSUVW][0-9]{7}[0-9A-J]" title="Formato: 12345678A o X1234567A"/>
+                                <input id="dni" v-model="modalCIF" type="text" maxlength="9" pattern="[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]|[XYZ][0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKE]|[ABCDEFGHJKLMNPQRSUVW][0-9]{7}[0-9A-J]" title="Formato: 12345678A o X1234567A"/>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <label for="actividad" class="align-self-center">Actividad</label>
@@ -123,7 +123,7 @@
                 modalTelf: '',
                 modalDireccion: '',
                 modalActividad: '',
-                modalNIF: '',
+                modalCIF: '',
                 modalIBAN: ''
             };
         },
@@ -164,7 +164,7 @@
                 this.modalTelf = proveedor.telefono;
                 this.modalDireccion = proveedor.direccion;
                 this.modalActividad = proveedor.actividad;
-                this.modalNIF = proveedor.cif;
+                this.modalCIF = proveedor.cif;
                 this.modalIBAN = proveedor.iban;
             },
             updateItem: function () {
@@ -174,7 +174,7 @@
                             email: this.modalEmail,
                             telefono: this.modalTelf,
                             direccion: this.modalDireccion,
-                            nif: this.modalNIF,
+                            cif: this.modalCIF,
                             actividad: this.modalActividad,
                             iban: this.modalIBAN
                         },
@@ -217,7 +217,7 @@
                 this.modalEmail = '';
                 this.modalTelf = '';
                 this.modalDireccion = '';
-                this.modalNIF = '';
+                this.modalCIF = '';
                 this.modalActividad = '';
                 this.modalIBAN = '';
             },
@@ -227,7 +227,7 @@
                             nombre: this.modalNombre,
                             email: this.modalEmail,
                             telefono: this.modalTelf,
-                            dni: this.modalDNI,
+                            cif: this.modalCIF,
                             iban: this.modalIBAN
                         },
                         {//config

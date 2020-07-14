@@ -34,7 +34,10 @@ Vue.component('contabilidad-fondos', require('./components/ContFondos.vue').defa
 Vue.component('contabilidad-cuentas', require('./components/ContCuentas.vue').default);
 Vue.component('contabilidad-gastos', require('./components/ContGastos.vue').default);
 Vue.component('contabilidad-cuotas', require('./components/ContCuotas.vue').default);
-//Vue.component('contabilidad-ingresos', require('./components/ContIngresos.vue').default);
+Vue.component('contabilidad-ingresos', require('./components/ContIngresos.vue').default);
+Vue.component('listar-fondos', require('./components/ListarFondos.vue').default);
+Vue.component('listar-cuentas', require('./components/ListarCuentas.vue').default);
+Vue.component('listar-cuotas', require('./components/ListarCuotas.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

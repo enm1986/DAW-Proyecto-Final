@@ -97,7 +97,8 @@
                 modalIBAN: '',
                 modalFondo: '',
                 modalSaldo: 0,
-                modalFecha: null
+                modalFecha: null,
+                fechaActual: new Date().toISOString().slice(0,10)
             };
         },
         created() {
@@ -132,7 +133,7 @@
                 this.modalIBAN = '';
                 this.modalFondo = '';
                 this.modalSaldo = 0;
-                this.modalFecha = null;
+                this.modalFecha = this.fechaActual;
             },
             prepareUpdate: function (cuenta) {
                 this.modalForm = 'update';

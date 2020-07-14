@@ -19,7 +19,7 @@ class PropiedadesController extends Controller {
                         ->join('prop_prop', 'propiedades.id', '=', 'prop_prop.id_propiedad')
                         ->join('propietarios', 'prop_prop.id_propietario', '=', 'propietarios.id')
                         ->join('tipos_prop', 'propiedades.id_tipo', '=', 'tipos_prop.id')
-                        ->select('tipos_prop.tipo', 'propiedades.descripcion', 'propiedades.coeficiente')
+                        ->select('propiedades.id', 'tipos_prop.tipo', 'propiedades.descripcion', 'propiedades.coeficiente')
                         ->where([
                             ['propiedades.id_comunidad', '=', $id],
                             ['propietarios.id_user', '=', Auth::id()],

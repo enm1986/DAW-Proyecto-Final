@@ -7,9 +7,12 @@
             <a class="btn btn-light m-1 " href="/home">Mis comunidades</a>
             <a class="btn btn-light m-1" href="/comunidad/{{ $comunidad->id }}">Portada</a>
         </div>
-        @if($acceso == 'admin')
-        <a class="btn btn-outline-light m-1" href="/comunidad/{{ $comunidad->id }}/admin" role="button">Administrar</a>
-        @endif
+        <div class="d-flex flex-wrap align-items-center">
+            <span class="text-light text-uppercase font-weight-bold m-2">{{ $comunidad->nombre }} </span>
+            @if($acceso == 'admin')
+            <a class="btn btn-outline-light m-1" href="/comunidad/{{ $comunidad->id }}/admin" role="button">Administrar</a>
+            @endif
+        </div> 
     </nav>
     <div class="container p-0">
         @yield('content2')

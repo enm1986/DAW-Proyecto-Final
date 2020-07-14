@@ -24,7 +24,6 @@ class CreateContGastosTable extends Migration {
             $table->foreignId('id_cuenta')->nullable()->constrained('cont_cuentas');
             $table->enum('tipo_gasto', ['ordinario', 'extraordinario']);
             $table->foreignId('id_fondo')->constrained('cont_fondos');
-            $table->foreignId('id_propiedad')->nullable()->constrained('propiedades');
             $table->date('fecha_pago')->nullable();
             $table->timestamps();
         });

@@ -23,17 +23,25 @@
 </template>
 
 <script>
+    import {eventBus} from "../app.js";
     export default {
         props: ['com_id'],
         data: function () {
             return{
                 bearer: 'Bearer ' + $cookies.get("api_token"),
-                propiedades: null,
+                propiedades: [],
             };
         },
-        mounted() {
+        created() {
             this.getPropiedades();
+        },
+        mounted() {
             console.log('Component mounted.');
+        },
+        watch: {
+            propiedades: function () {
+                eventBus.$emit("send-data", this.propiedades);
+            }
         },
         methods: {
             getPropiedades: function () {

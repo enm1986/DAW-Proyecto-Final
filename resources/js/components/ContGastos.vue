@@ -17,12 +17,11 @@
                             <th scope="col">Tipo de gasto</th>
                             <th scope="col" class="d-none d-lg-table-cell">F. de pago</th>
                             <th scope="col" class="d-none d-lg-table-cell">Fondo</th>
-                            <th scope="col" class="d-none d-md-table-cell">Propiedad</th>
                             <th scope="col">Pagado</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="gasto in gastos" v-bind:key="gasto.id">
+                        <tr v-for="gasto in elementosMostrados" v-bind:key="gasto.id">
                             <td><a data-toggle="modal" data-target="#modal" v-on:click="prepareUpdate(gasto)">{{ gasto.fecha_factura }}</a></td>
                             <td class="d-none d-lg-table-cell">{{ gasto.proveedor }}</td>
                             <td>{{ gasto.concepto }}</td>
@@ -32,11 +31,26 @@
                             <td>{{ gasto.tipo_gasto }}</td>
                             <td class="d-none d-lg-table-cell">{{ gasto.forma_pago }}</td>
                             <td class="d-none d-lg-table-cell">{{ gasto.fondo }}</td>
-                            <td class="d-none d-md-table-cell">{{ gasto.propiedad }}</td>
                             <td>{{ gasto.fecha_pago }}</td>
                         </tr>
                     </tbody>
                 </table>
+                <!--Paginador-->
+                <div class="d-flex flex-row justify-content-center m-2">
+                    <nav aria-label="Paginador">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <button type="button" class="page-link" v-if="pagina != 1" @click="pagina--">&laquo;</button>
+                            </li>
+                            <li class="page-item">
+                                <button type="button" class="page-link" v-bind:class="{'bg-info text-light': pagina==npagina}" v-for="npagina in paginas.slice(pagina-2 > 0 ? pagina-3 : 0, pagina+2)" @click="pagina=npagina">{{npagina}}</button>
+                            </li>
+                            <li class="page-item">
+                                <button type="button" class="page-link" v-if="pagina < paginas.length" @click="pagina++">&raquo;</button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
         <!-- Modal para modificar/crear-->
@@ -104,12 +118,6 @@
                                 </select>
                             </div>
                             <div class="d-flex flex-row mb-2">
-                                <label for="propiedad" class="align-self-center">Propiedad</label>
-                                <select id="propiedad" v-model="modalPropiedad">
-                                    <option v-for="propiedad in propiedades" v-bind:value="propiedad.id"> {{propiedad.descripcion}}</option>
-                                </select>
-                            </div>
-                            <div class="d-flex flex-row mb-2">
                                 <label for="fecPago" class="align-self-center">Fecha de Pago</label>
                                 <input id="fecPago" v-model="modalFecPago" type="date"/>
                             </div>
@@ -135,11 +143,13 @@
         data: function () {
             return{
                 bearer: 'Bearer ' + $cookies.get("api_token"),
+                pagina: 1,
+                porPagina: 10,
+                paginas: [],
                 gastos: [],
                 proveedores: [],
                 cuentas: [],
                 fondos: [],
-                propiedades: [],
                 modalForm: '',
                 modalId: null,
                 modalProveedor: '',
@@ -151,8 +161,8 @@
                 modalRef: '',
                 modalCuenta: '',
                 modalFondo: '',
-                modalPropiedad: '',
-                modalFecPago: ''
+                modalFecPago: '',
+                fechaActual: new Date().toISOString().slice(0, 10)
 
             };
         },
@@ -160,15 +170,22 @@
             this.getFondos();
             this.getCuentas();
             this.getProveedores();
-            this.getPropiedades();
             this.getGastos();
             console.log('Component created');
         },
         mounted() {
             console.log('Component mounted');
         },
-        computed: {},
-        watch: {},
+        computed: {
+            elementosMostrados: function () {
+                return this.paginar(this.gastos);
+            }
+        },
+        watch: {
+            gastos: function () {
+                this.setPaginador(this.gastos);
+            }
+        },
         methods: {
             getFondos: function () {
                 axios.get('/api/comunidad/' + this.comunidad_id + '/fondos',
@@ -195,15 +212,6 @@
                         })
                         .then(response => (this.proveedores = response.data));
             },
-            getPropiedades: function () {
-                axios.get('/api/comunidad/' + this.comunidad_id + '/propiedades',
-                        {//config
-                            headers: {
-                                'Authorization': this.bearer
-                            }
-                        })
-                        .then(response => (this.propiedades = response.data));
-            },
             getGastos: function () {
                 axios.get('/api/comunidad/' + this.comunidad_id + '/gastos',
                         {//config
@@ -218,14 +226,13 @@
                 this.modalId = null;
                 this.modalProveedor = '';
                 this.modalConcepto = '';
-                this.modalFecFactura = null;
+                this.modalFecFactura = this.fechaActual;
                 this.modalImporte = 0;
                 this.modalForPago = 'Efectivo';
                 this.modalTipoGasto = 'ordinario';
                 this.modalRef = '';
                 this.modalCuenta = '';
                 this.modalFondo = '';
-                this.modalPropiedad = '';
                 this.modalFecPago = null;
             },
             prepareUpdate: function (gasto) {
@@ -240,7 +247,6 @@
                 this.modalRef = gasto.refencia;
                 this.modalCuenta = gasto.id_cuenta;
                 this.modalFondo = gasto.id_fondo;
-                this.modalPropiedad = gasto.id_propiedad;
                 this.modalFecPago = gasto.fecha_pago;
             },
             createItem: function () {
@@ -255,7 +261,6 @@
                             referencia: this.modalRef,
                             id_cuenta: this.modalCuenta,
                             id_fondo: this.modalFondo,
-                            id_propiedad: this.modalPropiedad,
                             fecha_pago: this.modalFecPago
                         },
                         {//config
@@ -284,7 +289,6 @@
                             referencia: this.modalRef,
                             id_cuenta: this.modalCuenta,
                             id_fondo: this.modalFondo,
-                            id_propiedad: this.modalPropiedad,
                             fecha_pago: this.modalFecPago
                         },
                         {//config
@@ -318,6 +322,17 @@
                                 console.log(error.response);
                             });
                 }
+            },
+            setPaginador: function (items) {
+                let npaginas = Math.ceil(items.length / this.porPagina);
+                for (let i = 1; i <= npaginas; i++) {
+                    this.paginas.push(i);
+                }
+            },
+            paginar: function (items) {
+                let desde = (this.pagina * this.porPagina) - this.porPagina;
+                let hasta = (this.pagina * this.porPagina);
+                return items.slice(desde, hasta);
             }
         }
     }

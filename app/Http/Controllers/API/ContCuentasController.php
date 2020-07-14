@@ -11,27 +11,24 @@ class ContCuentasController extends Controller {
 
     public function index($id) {
 
-        $cuentas = DB::select('select C.id, C.banco, C.iban, C.saldo_inicial, C.fecha_saldo_ini,
-            C.id_fondo, F.nombre, sum(I.importe) as ingresos, sum(G.importe) as gastos 
-            from cont_cuentas C 
-            left join cont_fondos F on C.id_fondo = F.id 
-            left join cont_ingresos I on C.id = I.id_cuenta 
-            left join cont_gastos G on C.id = G.id_cuenta 
-            where C.id_comunidad = ' . $id . ' group by C.id, F.nombre order by C.banco');
-        /*
-          $cuentas = DB::table('cont_cuentas')
-          ->join('cont_fondos', 'cont_cuentas.id_fondo', '=', 'cont_fondos.id')
-          ->join('cont_ingresos', 'cont_cuentas.id', '=', 'cont_ingresos.id_cuenta')
-          ->join('cont_gastos', 'cont_cuentas.id', '=', 'cont_gastos.id_cuenta')
-          ->selectRaw('cont_cuentas.id, cont_cuentas.banco, cont_cuentas.iban, '
-          . 'cont_cuentas.saldo_inicial, cont_cuentas.fecha_saldo_ini, '
-          . 'cont_cuentas.id_fondo, cont_fondos.nombre, '
-          . 'sum(cont_ingresos.importe) as ingresos, sum(cont_gastos.importe) as gastos')
-          ->where('cont_cuentas.id_comunidad', '=', $id)
-          ->groupByRaw('cont_fondos.nombre, cont_cuentas.id')
-          ->orderBy('banco')
-          ->get();
-         */
+        $cuentas = DB::select('select id, banco, iban, saldo_inicial, fecha_saldo_ini, id_fondo, nombre,
+            sum(ingresos) as ingresos, sum(gastos) as gastos
+            from
+            ((select C.id, C.banco, C.iban, C.saldo_inicial, C.fecha_saldo_ini,
+                C.id_fondo, F.nombre, I.concepto, I.importe as ingresos, null as gastos 
+                from cont_cuentas C 
+                left outer join cont_fondos F on C.id_fondo = F.id 
+                left outer join cont_ingresos I on C.id = I.id_cuenta 
+                where C.id_comunidad ='.$id.')
+                union all
+            (select C.id, C.banco, C.iban, C.saldo_inicial, C.fecha_saldo_ini,
+                C.id_fondo, F.nombre, G.concepto, null as ingresos, G.importe as gastos 
+                from cont_cuentas C 
+                left outer join cont_fondos F on C.id_fondo = F.id 
+                left outer join cont_gastos G on C.id = G.id_cuenta 
+                where C.id_comunidad ='.$id.')) as cuentas
+            group by id, banco, iban, saldo_inicial, fecha_saldo_ini, id_fondo, nombre');
+
         return $cuentas;
     }
 

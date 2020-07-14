@@ -11,10 +11,35 @@ class ContIngresosController extends Controller {
 
     public function index($id) {
         $ingresos = DB::table('cont_ingresos')
+                ->join('cont_cuentas', 'cont_ingresos.id_cuenta', '=', 'cont_cuentas.id')
+                ->join('cont_fondos', 'cont_ingresos.id_fondo', '=', 'cont_fondos.id')
+                ->join('propiedades', 'cont_ingresos.id_propiedad', '=', 'propiedades.id', 'left outer')
+                ->select('cont_ingresos.id', 'cont_ingresos.concepto', 'cont_ingresos.fecha_ingreso',
+                        'cont_ingresos.importe', 'cont_ingresos.forma_pago',
+                        'cont_ingresos.referencia', 'cont_ingresos.tipo_ingreso',
+                        'cont_ingresos.id_cuenta', 'cont_cuentas.banco',
+                        'cont_ingresos.id_fondo', 'cont_fondos.nombre as fondo',
+                        'cont_ingresos.id_propiedad', 'propiedades.descripcion as propiedad')
                 ->where([
-                    ['id_comunidad', '=', $id]
+                    ['cont_ingresos.id_comunidad', '=', $id]
                 ])
-                ->orderByDesc('fecha_factura')
+                ->orderByDesc('fecha_ingreso')
+                ->get();
+        return $ingresos;
+    }
+    
+    public function indexPropietario($id) {
+        $ingresos = DB::table('cont_ingresos')
+                ->join('prop_prop', 'cont_ingresos.id_propiedad', '=', 'prop_prop.id_propiedad', 'left outer')
+                ->join('propietarios', 'prop_prop.id_propietario', '=', 'propietarios.id', 'left outer')
+                ->select('cont_ingresos.id', 'cont_ingresos.concepto', 'cont_ingresos.fecha_ingreso',
+                        'cont_ingresos.importe', 'cont_ingresos.referencia', 'cont_ingresos.tipo_ingreso',
+                        'cont_ingresos.id_propiedad')
+                ->where([
+                    ['cont_ingresos.id_comunidad', '=', $id],
+                    ['propietarios.id_user', '=', Auth::id()]
+                ])
+                ->orderByDesc('fecha_ingreso')
                 ->get();
         return $ingresos;
     }
@@ -22,7 +47,6 @@ class ContIngresosController extends Controller {
     public function create(Request $request, $id) {
         $ingreso = DB::table('cont_ingresos')->insertGetId([
             'id_comunidad' => $id,
-            'id_propietario' => $request->input('id_propietario'),
             'id_propiedad' => $request->input('id_propiedad'),
             'id_cuota' => $request->input('id_cuota'),
             'concepto' => $request->input('concepto'),
@@ -47,9 +71,6 @@ class ContIngresosController extends Controller {
         $affected = DB::table('cont_ingresos')
                 ->where('id', $ingreso)
                 ->update([
-            'id_propietario' => $request->input('id_propietario'),
-            'id_propiedad' => $request->input('id_propiedad'),
-            'id_cuota' => $request->input('id_cuota'),
             'concepto' => $request->input('concepto'),
             'importe' => $request->input('importe'),
             'forma_pago' => $request->input('forma_pago'),

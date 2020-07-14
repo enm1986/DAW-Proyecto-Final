@@ -21,6 +21,7 @@ class CreateContCuotasTable extends Migration {
             $table->float('importe', 8, 2);
             $table->foreignId('id_fondo')->constrained('cont_fondos');
             $table->enum('tipo_cuota', ['ordinario', 'extraordinario']);
+            $table->boolean('pendiente')->default(True);
             $table->timestamps();
         });
     }
