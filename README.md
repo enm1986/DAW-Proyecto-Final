@@ -89,7 +89,7 @@ VPS en [Amazon](https://aws.amazon.com/es/):
 user: admin@com1.com   
 pass: admin   
 
-user: usuaruo@com1.com   
+user: usuario@com1.com   
 pass: usuario   
 
 
