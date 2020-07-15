@@ -1,7 +1,8 @@
 # Administrador de comunidades
 
 Eugenio Navarro Mas (enavarro@cifpfbmoll.eu).   
-CIFP Francesc de Borja Moll - Proyecto final de CFGS de Desarrollo de aplicaciones web.   
+Proyecto final de CFGS de Desarrollo de aplicaciones web.   
+CIFP Francesc de Borja Moll.   
 
 ---
 
