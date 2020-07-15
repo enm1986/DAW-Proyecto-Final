@@ -27,15 +27,15 @@ Para esta aplicación se ha desarrollado:
 - Un servidor remoto donde se desplegará la aplicación.
 
 La aplicación desarrollada con el Framework Laravel consta de:
-- Migraciones para crear las tablas de la base de datos.
-- Seeder para poblar la base de datos y poder hacer pruebas.
+- [Migraciones](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/migrations) para crear las tablas de la base de datos.
+- [Seeder](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/seeds) para poblar la base de datos y poder hacer pruebas.
 - API Restful
-    - Controladores que implementan las funciones que gestionarán las peticiones.
-    - Rutas con las que poder interactuar con la aplicación.
+    - [Controladores](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/app/Http/Controllers/API) que implementan las funciones que gestionarán las peticiones.
+    - [Rutas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/routes) con las que poder interactuar con la aplicación.
 - Sistema de login que diferencia usuarios básicos de administradores.
 - Plantillas, vistas y componentes Vue.
-    - Plantillas y vistas
-    - Componentes Vue
+    - [Plantillas y vistas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/views)
+    - [Componentes Vue](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/js)
 
 
 ## Despliegue:
