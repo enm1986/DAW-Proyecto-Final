@@ -12,7 +12,6 @@ Se ha desarrollado una aplicación para llevar a cabo la administración de comu
 
 Se ha diseñado esta aplicación para que los administradores puedan llevar la gestión de las comunidades de manera simple y los propietarios puedan acceder a su información y poder ver el estado de las cuentas de las comunidades a las que pertenecen de manera que la administración se lleve de forma totalmente transparente para los propietarios.
 
-
 Para la implementación de esta aplicación se han utilizado las siguientes tecnologías:
 - Framework PHP [Laravel 7](https://laravel.com/): para el desarrollo de la API Restful y diseño de vistas.
 - Framework Javascript [Vue.js](https://vuejs.org/): para la implementación del cliente.
@@ -28,7 +27,20 @@ Para esta aplicación se ha desarrollado:
 - Un servidor remoto donde se desplegará la aplicación.
 
 La aplicación desarrollada con el Framework Laravel consta de:
-- [Migraciones](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/migrations) para crear las tablas de la base de datos.
+- [Migraciones](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/migrations) 
+- [Seeder](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/seeds)
+- API Restful
+    - [Controladores](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/app/Http/Controllers/API)
+    - [Rutas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/routes)
+- Sistema de login que diferencia usuarios básicos de administradores.
+- Plantillas, [vistas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/views) y [componentes Vue](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/js).
+
+### [Migraciones](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/migrations)
+
+Usadas para crear las tablas de la base de datos.
+
+
+- [Migraciones](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/migrations) 
 - [Seeder](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/seeds) para poblar la base de datos y poder hacer pruebas.
 - API Restful
     - [Controladores](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/app/Http/Controllers/API) que implementan las funciones que gestionarán las peticiones. Prácticamente se ha implementado un controlador para cada tabla.
