@@ -61,10 +61,10 @@ Alguna *query* más complicada ha sido construida de forma pura (*Raw SQL Querie
 Tanto para la interfaz web como para la API.   
 Con ellas se podrá interactuar con la aplicación.   
 Las peticiones a la API apuntan a las rutas de API, y estas a su vez apuntan a los métodos implementados en los controladores.   
-También se ha implementado un *middleware* que actua sobre varias rutas de la API para restingir el acceso a usuarios que no sean administradores de las comunidades.   
+También se ha implementado un *middleware* que actúa sobre varias rutas de la API para restringir el acceso a usuarios que no sean administradores de las comunidades.   
  
 ### Plantillas, vistas y componentes Vue
-Se han diseñado varias plantillas que comparten varias vistas implementado componentes Vue usados en distintas vistas.   
+Se han diseñado varias plantillas que comparten varias vistas e implementado componentes Vue usados en distintas vistas.   
 Las plantillas y vistas se han diseñado con el sistema *Blade* de Laravel y *Bootstrap* para el CSS.   
 Los componentes Vue visualizan elementos reactivos y se encargan de realizar las peticiones a la API.   
 Se ha usado el cliente HTTP [axios](https://github.com/axios/axios) para realizar las peticiones a la API.   
