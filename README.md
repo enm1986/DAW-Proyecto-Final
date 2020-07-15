@@ -2,7 +2,11 @@
 
 Eugenio Navarro Mas (enavarro@cifpfbmoll.eu).   
 Proyecto final de CFGS de Desarrollo de aplicaciones web.   
-CIFP Francesc de Borja Moll.   
+CIFP Francesc de Borja Moll.
+
+- [Descripción](#descripcion)
+- [Desarrollo](#desarrollo)
+- [Despliegue](#despliegue)
 
 ---
 
