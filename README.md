@@ -18,6 +18,7 @@ Para la implementación de esta aplicación se han utilizado las siguientes tecn
 - Framework CSS [Bootstrap 4](https://getbootstrap.com/): para diseño web.
 - Base de datos relacional [PostgreSQL](https://www.postgresql.org/).
 
+
 ## Desarrollo
 
 Para esta aplicación se ha desarrollado:
@@ -35,20 +36,23 @@ La aplicación desarrollada con el Framework Laravel consta de:
 - Sistema de login que diferencia usuarios básicos de administradores.
 - Plantillas, [vistas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/views) y [componentes Vue](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/js).
 
-### [Migraciones](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/migrations)
+
+### Migraciones
 
 Usadas para crear las tablas de la base de datos.
 
+### Seeders
+Usados poblar automáticamente la base de datos y poder hacer pruebas.   
+Se han poblado algunas tablas con datos medianamente realistas.
 
-- [Migraciones](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/migrations) 
-- [Seeder](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/seeds) para poblar la base de datos y poder hacer pruebas.
-- API Restful
-    - [Controladores](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/app/Http/Controllers/API) que implementan las funciones que gestionarán las peticiones. Prácticamente se ha implementado un controlador para cada tabla.
-    - [Rutas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/routes) con las que poder interactuar con la aplicación. Las peticiones a la API apuntan a estas rutas, y estas a su vez apuntan a los métodos implementados en los controladores.
-- Sistema de login que diferencia usuarios básicos de administradores.
-- Plantillas, vistas y componentes Vue.
-    - [Plantillas y vistas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/views)
-    - [Componentes Vue](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/js): visualizan elementos reactivos y realizan las peticiones a la API.
+### Controladores
+que implementan las funciones que gestionarán las peticiones. Prácticamente se ha implementado un controlador para cada tabla.
+
+### Rutas
+con las que poder interactuar con la aplicación. Las peticiones a la API apuntan a estas rutas, y estas a su vez apuntan a los métodos implementados en los controladores.
+
+### Plantillas, vistas y componentes Vue
+visualizan elementos reactivos y realizan las peticiones a la API.
 
 
 ## Despliegue:
@@ -66,10 +70,10 @@ VPS en [Amazon](https://aws.amazon.com/es/):
 
 #### Usuarios de prueba
 
-user: admin@com1.com 
-pass: admin 
+user: admin@com1.com   
+pass: admin   
 
-user: usuaruo@com1.com
-pass: usuario
+user: usuaruo@com1.com   
+pass: usuario   
 
 
