@@ -12,6 +12,7 @@ Se ha desarrollado una aplicación para llevar a cabo la administración de comu
 
 Se ha diseñado esta aplicación para que los administradores puedan llevar la gestión de las comunidades de manera simple y los propietarios puedan acceder a su información y poder ver el estado de las cuentas de las comunidades a las que pertenecen de manera que la administración se lleve de forma totalmente transparente para los propietarios.
 
+
 Para la implementación de esta aplicación se han utilizado las siguientes tecnologías:
 - Framework PHP [Laravel 7](https://laravel.com/): para el desarrollo de la API Restful y diseño de vistas.
 - Framework Javascript [Vue.js](https://vuejs.org/): para la implementación del cliente.
@@ -30,12 +31,12 @@ La aplicación desarrollada con el Framework Laravel consta de:
 - [Migraciones](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/migrations) para crear las tablas de la base de datos.
 - [Seeder](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/seeds) para poblar la base de datos y poder hacer pruebas.
 - API Restful
-    - [Controladores](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/app/Http/Controllers/API) que implementan las funciones que gestionarán las peticiones.
-    - [Rutas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/routes) con las que poder interactuar con la aplicación.
+    - [Controladores](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/app/Http/Controllers/API) que implementan las funciones que gestionarán las peticiones. Prácticamente se ha implementado un controlador para cada tabla.
+    - [Rutas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/routes) con las que poder interactuar con la aplicación. Las peticiones a la API apuntan a estas rutas, y estas a su vez apuntan a los métodos implementados en los controladores.
 - Sistema de login que diferencia usuarios básicos de administradores.
 - Plantillas, vistas y componentes Vue.
     - [Plantillas y vistas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/views)
-    - [Componentes Vue](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/js)
+    - [Componentes Vue](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/js): visualizan elementos reactivos y realizan las peticiones a la API.
 
 
 ## Despliegue:
