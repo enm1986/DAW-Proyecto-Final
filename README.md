@@ -22,25 +22,37 @@ Para esta aplicación se ha desarrollado:
 - Base de datos donde se almacenará la información de la aplicación.
 - Un servidor remoto donde se desplegará la aplicación.
 
-La API desarrollada con el Framework Laravel consta de:
+La aplicación desarrollada con el Framework Laravel consta de:
 - Migraciones para crear las tablas de la base de datos.
 - Seeder para poblar la base de datos y poder hacer pruebas.
-- Controladores que implementan las funciones que gestionarán las peticiones.
-- Rutas con las que poder interactuar con la aplicación.
+- API Restful
+    - Controladores que implementan las funciones que gestionarán las peticiones.
+    - Rutas con las que poder interactuar con la aplicación.
 - Sistema de login que diferencia usuarios básicos de administradores.
-
-Además con Laravel también se han implementado:
-
-- Vistas de usuario usando componentes Vue para hacer contenido dinámico.
+- Plantillas, vistas y componentes Vue.
+    - Plantillas y vistas
+    - Componentes Vue
 
 
 ## Despliegue:
 
+### Site remoto
 
-[Administrador de comunidades](http://enavarro.sytes.net)
+http://enavarro.sytes.net
 
-### Usuario de prueba
+VPS en [Amazon](https://aws.amazon.com/es/): 
+- ubuntu 18.04
+- Apache 2.4
+- PHP 7.4
+- PostgreSQL 12
+*Hostname* de [No-IP](https://www.noip.com/):
 
-user: admin@com1.com
-pass: admin
+### Usuarios de prueba
+
+user: admin@com1.com 
+pass: admin 
+
+user: usuaruo@com1.com
+pass: usuario
+
 
