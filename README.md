@@ -14,7 +14,7 @@ Se ha desarrollado una aplicación para llevar a cabo la administración de comu
 
 Se ha diseñado esta aplicación para que los administradores puedan llevar la gestión de las comunidades de manera simple y los propietarios puedan acceder a su información y poder ver el estado de las cuentas de las comunidades a las que pertenecen de manera que la administración se lleve de forma totalmente transparente para los propietarios.
 
-## Análisis
+## Desarrollo
 
 Para esta aplicación se ha desarrollado:
 - Una API que proporcionará los datos que mostrará un cliente web.
@@ -27,15 +27,19 @@ La API desarrollada con el Framework Laravel consta de:
 - Seeder para poblar la base de datos y poder hacer pruebas.
 - Controladores que implementan las funciones que gestionarán las peticiones.
 - Rutas con las que poder interactuar con la aplicación.
+- Sistema de login que diferencia usuarios básicos de administradores.
 
 Además con Laravel también se han implementado:
-- Sistema de login.
-- Vistas de usuario usando componentes en Vue.
-## Remoto:
+
+- Vistas de usuario usando componentes Vue para hacer contenido dinámico.
+
+
+## Despliegue:
+
 
 [Administrador de comunidades](http://enavarro.sytes.net)
 
-## Usuario de prueba
+### Usuario de prueba
 
 user: admin@com1.com
 pass: admin
