@@ -39,20 +39,30 @@ La aplicación desarrollada con el Framework Laravel consta de:
 
 ### Migraciones
 
-Usadas para crear las tablas de la base de datos.
+Usadas para crear las tablas de la base de datos.   
 
 ### Seeders
-Usados poblar automáticamente la base de datos y poder hacer pruebas.   
-Se han poblado algunas tablas con datos medianamente realistas.
+Usados para poblar automáticamente la base de datos con datos aleatorios y poder hacer pruebas.   
+Se han poblado algunas tablas como las de *Comunidades*, *Propietarios*, *Propiedades*, *Propiedades_Propietarios*, *Proveedores*, *Fondos* y *Cuentas*.
 
 ### Controladores
-que implementan las funciones que gestionarán las peticiones. Prácticamente se ha implementado un controlador para cada tabla.
+Donde se agrupan los métodos que gestionan la lógica tras las peticiones a la API.   
+Prácticamente se ha implementado un controlador para cada tabla.   
+Los métodos que se han implementado en ellos consisten en *querys* a la base de datos.   
+La mayoría de *querys* han sido construidas con el *Query Builder* de manera que si se cambia de DBMS no será necesario rehacer las *querys*.   
+Alguna *query* más complicada ha sido construida de forma pura (*Raw SQL Queries*). ([Ejemplo](https://github.com/enm1986/DAW-Proyecto-Final/blob/9be8bc494dbbe3a8f994cb4b9d20fc57c1b610c2/app/Http/Controllers/API/ContCuentasController.php#L12))
 
 ### Rutas
-con las que poder interactuar con la aplicación. Las peticiones a la API apuntan a estas rutas, y estas a su vez apuntan a los métodos implementados en los controladores.
-
+Tanto para la interfaz web como para la API.   
+Con ellas se podrá interactuar con la aplicación.   
+Las peticiones a la API apuntan a las rutas de API, y estas a su vez apuntan a los métodos implementados en los controladores.
+También se ha implementado un *middleware* que actua sobre varias rutas de la API para restingir el acceso a usuarios que no sean administradores de las comunidades.
+ 
 ### Plantillas, vistas y componentes Vue
-visualizan elementos reactivos y realizan las peticiones a la API.
+Se han diseñado varias plantillas que comparten varias vistas implementado componentes Vue usados en distintas vistas.
+Las plantillas y vistas se han diseñado con el sistema *Blade* de Laravel y *Bootstrap* para el CSS.
+Los componentes Vue visualizan elementos reactivos y se encargan de realizar las peticiones a la API.
+Se ha usado el cliente HTTP [axios](https://github.com/axios/axios) para realizar las peticiones a la API.
 
 
 ## Despliegue:
