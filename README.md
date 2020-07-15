@@ -1,18 +1,21 @@
 # Administrador de comunidades
 
-Proyecto final de CFGS de Desarrollo de aplicaciones web.
+CIFP Francesc de Borja Moll - Proyecto final de CFGS de Desarrollo de aplicaciones web.   
+Eugenio Navarro Mas (enavarro@cifpfbmoll.eu).   
 
-Para la implementación de esta aplicación se han utilizado las siguientes tecnologías:
-- Framework PHP [Laravel 7](https://laravel.com/): para el desarrollo de la API Restful y diseño de vistas.
-- Framework Javascript [Vue.js](https://vuejs.org/): para la implementación del cliente.
-- Framework CSS [Bootstrap 4](https://getbootstrap.com/): para diseño web.
-- Base de datos relacional [PostgreSQL](https://www.postgresql.org/).
+---
 
 ## Descripción
 
 Se ha desarrollado una aplicación para llevar a cabo la administración de comunidades de propietarios.
 
 Se ha diseñado esta aplicación para que los administradores puedan llevar la gestión de las comunidades de manera simple y los propietarios puedan acceder a su información y poder ver el estado de las cuentas de las comunidades a las que pertenecen de manera que la administración se lleve de forma totalmente transparente para los propietarios.
+
+Para la implementación de esta aplicación se han utilizado las siguientes tecnologías:
+- Framework PHP [Laravel 7](https://laravel.com/): para el desarrollo de la API Restful y diseño de vistas.
+- Framework Javascript [Vue.js](https://vuejs.org/): para la implementación del cliente.
+- Framework CSS [Bootstrap 4](https://getbootstrap.com/): para diseño web.
+- Base de datos relacional [PostgreSQL](https://www.postgresql.org/).
 
 ## Desarrollo
 
@@ -36,18 +39,18 @@ La aplicación desarrollada con el Framework Laravel consta de:
 
 ## Despliegue:
 
-### Site remoto
+#### Site remoto
 
-http://enavarro.sytes.net
+*Hostname* de [No-IP](https://www.noip.com/):
+- http://enavarro.sytes.net
 
 VPS en [Amazon](https://aws.amazon.com/es/): 
 - ubuntu 18.04
 - Apache 2.4
 - PHP 7.4
-- PostgreSQL 12
-*Hostname* de [No-IP](https://www.noip.com/):
+- PostgreSQL 12 
 
-### Usuarios de prueba
+#### Usuarios de prueba
 
 user: admin@com1.com 
 pass: admin 
