@@ -33,13 +33,13 @@ Para esta aplicación se ha desarrollado:
 - Un servidor remoto donde se desplegará la aplicación.
 
 La aplicación desarrollada con el Framework Laravel consta de:
-- [Migraciones](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/migrations) 
-- [Seeder](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/seeds)
+- Migraciones ([*ver*](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/migrations)) 
+- Seeder ([*ver*](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/database/seeds))
 - API Restful
-    - [Controladores](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/app/Http/Controllers/API)
-    - [Rutas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/routes)
+    - Controladores ([*ver*](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/app/Http/Controllers/API))
+    - Rutas ([*ver*](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/routes))
 - Sistema de login que diferencia usuarios básicos de administradores.
-- Plantillas, [vistas](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/views) y [componentes Vue](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/js).
+- Plantillas, vistas ([*ver*](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/views)) y componentes Vue ([*ver*](https://github.com/enm1986/DAW-Proyecto-Final/tree/master/resources/js)).
 
 
 ### Migraciones
